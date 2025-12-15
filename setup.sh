@@ -21,20 +21,51 @@ fi
 
 # Parse command line options
 SHOW_CHECK=false
+CONFIGURE_MONITORS=false
 while [[ $# -gt 0 ]]; do
     case $1 in
         --check)
             SHOW_CHECK=true
             shift
             ;;
+        --configure-monitors)
+            CONFIGURE_MONITORS=true
+            shift
+            ;;
         *)
             echo "Unknown option: $1"
-            echo "Usage: $0 [--check]"
-            echo "  --check    Show installation status without installing"
+            echo "Usage: $0 [--check] [--configure-monitors]"
+            echo "  --check               Show installation status without installing"
+            echo "  --configure-monitors  Launch nwg-displays to configure monitors"
             exit 1
             ;;
     esac
 done
+
+# If --configure-monitors, launch nwg-displays
+if [ "$CONFIGURE_MONITORS" = true ]; then
+    echo "=== Monitor Configuration ==="
+    
+    if ! command -v nwg-displays &> /dev/null; then
+        echo "ERROR: nwg-displays not found"
+        echo "Run the full setup first: ./setup.sh"
+        exit 1
+    fi
+    
+    # Check if in Hyprland session
+    if [ -z "$HYPRLAND_INSTANCE_SIGNATURE" ]; then
+        echo "ERROR: Not running in a Hyprland session"
+        echo "Please log into Hyprland first, then run:"
+        echo "  ./setup.sh --configure-monitors"
+        exit 1
+    fi
+    
+    echo "Launching nwg-displays..."
+    echo "Configure your monitors and click 'Apply' to save to Hyprland config"
+    nwg-displays
+    
+    exit 0
+fi
 
 # If --check, show inventory and exit
 if [ "$SHOW_CHECK" = true ]; then
@@ -48,8 +79,12 @@ if [ "$SHOW_CHECK" = true ]; then
         google-noto-emoji-fonts nwg-displays cargo rust go
     
     echo ""
+    echo "Media control packages:"
+    inventory_packages brightnessctl playerctl pipewire-utils
+    
+    echo ""
     echo "Custom binaries:"
-    inventory_binaries elephant walker wttrbar
+    inventory_binaries elephant walker wttrbar brightnessctl playerctl wpctl
     
     echo ""
     echo "Configuration files:"
@@ -164,6 +199,10 @@ if [ ${#FAILED_COMPONENTS[@]} -eq 0 ]; then
     log "Setup completed successfully"
     echo "=== Setup Complete ==="
     echo "Please reboot and select 'Hyprland' at the login screen"
+    echo ""
+    echo "After logging into Hyprland, configure your monitors:"
+    echo "  ./setup.sh --configure-monitors"
+    echo ""
     echo "Power button menu: Press physical power button or Super+Escape"
 else
     log "Setup completed with ${#FAILED_COMPONENTS[@]} failures"

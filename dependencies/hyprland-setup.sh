@@ -25,9 +25,10 @@ log "Starting $COMPONENT installation"
 echo "Checking current installation status..."
 CORE_PACKAGES=(hyprland kitty dunst grim slurp hyprpaper wlogout firefox dolphin)
 ADDITIONAL_PACKAGES=(waybar bluez blueman pamixer pavucontrol btop bc fontawesome-fonts google-noto-emoji-fonts nwg-displays)
+MEDIA_PACKAGES=(brightnessctl playerctl pipewire-utils)
 BUILD_PACKAGES=(cargo rust go glib-devel cairo-devel cairo-gobject-devel poppler-devel poppler-glib-devel gtk4-layer-shell-devel protoc wayland-devel wayland-protocols-devel libxkbcommon-devel lz4-devel)
 
-ALL_PACKAGES=("${CORE_PACKAGES[@]}" "${ADDITIONAL_PACKAGES[@]}" "${BUILD_PACKAGES[@]}")
+ALL_PACKAGES=("${CORE_PACKAGES[@]}" "${ADDITIONAL_PACKAGES[@]}" "${MEDIA_PACKAGES[@]}" "${BUILD_PACKAGES[@]}")
 MISSING_PACKAGES=()
 
 for pkg in "${ALL_PACKAGES[@]}"; do

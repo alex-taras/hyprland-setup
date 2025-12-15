@@ -37,7 +37,7 @@ fi
 
 # Create config directories
 echo "Creating config directories..."
-mkdir -p ~/.config/hypr
+mkdir -p ~/.config/hypr/conf.d
 mkdir -p ~/.config/waybar
 mkdir -p ~/.config/wlogout
 mkdir -p ~/.config/kitty
@@ -49,6 +49,14 @@ if [ -f "$CONFIGS_DIR/hypr/hyprland.conf" ]; then
     echo "✓ Copied hyprland.conf"
 else
     echo "⚠ Warning: hyprland.conf not found"
+fi
+
+# Copy Hyprland modular configs
+if [ -d "$CONFIGS_DIR/hypr/conf.d" ]; then
+    cp "$CONFIGS_DIR/hypr/conf.d"/*.conf ~/.config/hypr/conf.d/ 2>/dev/null || true
+    echo "✓ Copied hyprland conf.d files ($(ls -1 "$CONFIGS_DIR/hypr/conf.d"/*.conf 2>/dev/null | wc -l) files)"
+else
+    echo "⚠ Warning: hypr/conf.d directory not found"
 fi
 
 # Copy Waybar configs
