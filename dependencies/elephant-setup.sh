@@ -3,7 +3,20 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/lib-state.sh"
+
+COMPONENT="elephant"
+
+# Check if already completed
+if is_complete "$COMPONENT"; then
+    echo "✓ Elephant already installed (skipping)"
+    log "Skipped $COMPONENT (already complete)"
+    exit 0
+fi
+
 echo "=== Building Elephant ==="
+log "Starting $COMPONENT installation"
 
 WORK_DIR=~/Work
 mkdir -p "$WORK_DIR"
@@ -36,3 +49,4 @@ fi
 
 echo "✓ Elephant installed to ~/go/bin/elephant"
 echo "  Note: ~/go/bin must be in your PATH (added to ~/.bashrc)"
+mark_complete "$COMPONENT"

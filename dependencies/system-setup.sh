@@ -3,7 +3,20 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/lib-state.sh"
+
+COMPONENT="system_config"
+
+# Check if already completed
+if is_complete "$COMPONENT"; then
+    echo "✓ System configuration already applied (skipping)"
+    log "Skipped $COMPONENT (already complete)"
+    exit 0
+fi
+
 echo "=== Configuring System Settings ==="
+log "Starting $COMPONENT configuration"
 
 # Configure power button to not shutdown immediately
 echo "Setting up power button handling..."
@@ -28,3 +41,4 @@ echo "=== System Configuration Complete ==="
 echo ""
 echo "IMPORTANT: Reboot required for power button changes to take effect"
 echo "After reboot, log in and select 'Hyprland' from the session menu"
+mark_complete "$COMPONENT"

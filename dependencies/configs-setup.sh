@@ -3,7 +3,20 @@
 
 set -e
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/lib-state.sh"
+
+COMPONENT="configs"
+
+# Check if already completed
+if is_complete "$COMPONENT"; then
+    echo "✓ Configurations already deployed (skipping)"
+    log "Skipped $COMPONENT (already complete)"
+    exit 0
+fi
+
 echo "=== Setting up Configurations ==="
+log "Starting $COMPONENT deployment"
 
 # Get the repo root directory (parent of dependencies/)
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -93,3 +106,4 @@ echo "  ~/.config/wlogout/layout"
 echo "  ~/.config/wlogout/style.css"
 echo "  ~/.config/kitty/kitty.conf"
 echo "  ~/bin/*.sh"
+mark_complete "$COMPONENT"
