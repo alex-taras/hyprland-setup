@@ -158,6 +158,7 @@ run_component "$DEPS_DIR/system-setup.sh" "system_config"
 
 echo ""
 echo "=== Installing Optional Components ==="
+run_component "$DEPS_DIR/gum-setup.sh" "gum" || true
 run_component "$DEPS_DIR/elephant-setup.sh" "elephant" || true
 run_component "$DEPS_DIR/walker-setup.sh" "walker" || true
 run_component "$DEPS_DIR/waybar-setup.sh" "waybar_tools" || true

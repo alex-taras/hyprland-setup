@@ -23,9 +23,24 @@ This script automates the complete installation and configuration of Hyprland, i
 
 ## Quick Start
 
+### Interactive Mode (Recommended)
+
 ```bash
 git clone <your-repo-url>
 cd hyprland-setup
+chmod +x interactive-setup.sh
+./interactive-setup.sh
+```
+
+The interactive mode provides a friendly TUI menu to:
+- Check installation status
+- Run full installation
+- Configure monitors
+- And more...
+
+### Standard Mode
+
+```bash
 chmod +x setup.sh
 ./setup.sh
 ```
