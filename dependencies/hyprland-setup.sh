@@ -8,6 +8,9 @@ source "$SCRIPT_DIR/lib-state.sh"
 
 COMPONENT="hyprland_packages"
 
+# Setup error handling for this component
+setup_error_handling "$COMPONENT"
+
 # Check if already completed
 if is_complete "$COMPONENT"; then
     echo "✓ Hyprland packages already installed (skipping)"
@@ -37,7 +40,7 @@ if [ ${#MISSING_PACKAGES[@]} -eq 0 ]; then
     echo "✓ All packages already installed"
 else
     echo "Installing ${#MISSING_PACKAGES[@]} missing packages..."
-    sudo dnf install -y "${MISSING_PACKAGES[@]}"
+    safe_dnf_install "${MISSING_PACKAGES[@]}"
 fi
 
 # Enable bluetooth

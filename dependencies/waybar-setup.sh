@@ -8,6 +8,9 @@ source "$SCRIPT_DIR/lib-state.sh"
 
 COMPONENT="waybar_tools"
 
+# Setup error handling for this component
+setup_error_handling "$COMPONENT"
+
 # Check if already completed
 if is_complete "$COMPONENT"; then
     echo "✓ Waybar tools already installed (skipping)"
@@ -17,6 +20,14 @@ fi
 
 echo "=== Setting up Waybar Tools ==="
 log "Starting $COMPONENT installation"
+
+# Check if cargo is available
+if ! command -v cargo &> /dev/null; then
+    log_error "Cargo toolchain not found"
+    echo "ERROR: Cargo/Rust is required to build waybar tools"
+    echo "Install it first: sudo dnf install -y cargo rust"
+    exit 1
+fi
 
 WORK_DIR=~/Work
 mkdir -p "$WORK_DIR"
@@ -33,8 +44,17 @@ else
 fi
 
 echo "Building wttrbar..."
-cargo build --release
-sudo cp target/release/wttrbar /usr/local/bin/
+if ! safe_build "cargo" "cargo build --release"; then
+    echo "Failed to build wttrbar"
+    exit 1
+fi
 
-echo "✓ Waybar tools installed"
-mark_complete "$COMPONENT"
+if [ -f "target/release/wttrbar" ]; then
+    sudo cp target/release/wttrbar /usr/local/bin/
+    echo "✓ Waybar tools installed"
+    mark_complete "$COMPONENT"
+else
+    log_error "wttrbar binary not found after build"
+    echo "ERROR: Build claimed success but binary not found"
+    exit 1
+fi

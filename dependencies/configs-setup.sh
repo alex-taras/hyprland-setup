@@ -8,6 +8,9 @@ source "$SCRIPT_DIR/lib-state.sh"
 
 COMPONENT="configs"
 
+# Setup error handling for this component
+setup_error_handling "$COMPONENT"
+
 # Check if already completed
 if is_complete "$COMPONENT"; then
     echo "✓ Configurations already deployed (skipping)"
