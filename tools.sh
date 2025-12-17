@@ -47,6 +47,11 @@ else
     log "UFW enabled and started"
 fi
 
+# Allow LocalSend port
+log "Configuring UFW for LocalSend..."
+sudo ufw allow 53317/tcp comment 'LocalSend'
+sudo ufw allow 53317/udp comment 'LocalSend'
+
 # Disk management
 sudo pacman -S --noconfirm gnome-disk-utility gparted
 
@@ -58,6 +63,10 @@ sudo pacman -S --noconfirm ripgrep fd bat eza fzf zoxide rsync
 
 log "Installing TUI tools (choose appropriate versions, e.g., pacseek option 1)..."
 paru -S wiremix bluetuith impala pacseek
+
+# File sharing
+log "Installing LocalSend..."
+paru -S --noconfirm localsend-bin
 
 log "IO and TUI tools installed!"
 log "TUI tools:"
@@ -79,3 +88,7 @@ log ""
 log "Network:"
 log "  UFW firewall enabled and running"
 log "  Use 'sudo ufw status' to check firewall rules"
+log "  LocalSend port 53317 (TCP/UDP) allowed through firewall"
+log ""
+log "File Sharing:"
+log "  localsend - cross-platform file sharing"
