@@ -74,7 +74,7 @@
   },
 
   "custom/stock": {
-      "exec": "~/bin/stocktick.sh",
+      "exec": "~/bin/bar-stocktick.sh",
       "tooltip": true,
       "interval": 3600,
       "format": "{text}",
@@ -82,7 +82,7 @@
   },
 
   "custom/sonarr": {
-      "exec": "~/bin/sonarrq.sh",
+      "exec": "~/bin/bar-sonarrq.sh",
       "return-type": "json",
       "interval": 3600,
       "format": "{icon} - {text}",

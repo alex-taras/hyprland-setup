@@ -1,4 +1,7 @@
 #!/bin/bash
+
+export $(cat ~/.config/gum/gum.conf | xargs)
+
 # TUI System Menu
 set -e
 logout_session() {
@@ -27,7 +30,7 @@ confirm_action() {
 execute_action() {
     case "$1" in
         "AUR")
-            kitty --detach pacseek &
+            kitty --detach $HOME/bin/pkg-aur-install.sh &
             sleep 0.1
             pkill -P $$ kitty
             ;;
