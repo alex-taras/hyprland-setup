@@ -17,10 +17,24 @@ else
     log "Multilib already enabled"
 fi
 
+# GPU drivers (AMD)
+log "Installing AMD GPU drivers and Vulkan support..."
+sudo pacman -S --noconfirm mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon
+
+# Wine and dependencies
+log "Installing Wine and dependencies..."
+sudo pacman -S --noconfirm wine wine-gecko wine-mono winetricks
+
+# Wine 32-bit libraries
+log "Installing Wine 32-bit dependencies..."
+sudo pacman -S --noconfirm lib32-gnutls lib32-libldap lib32-mpg123 lib32-openal \
+    lib32-v4l-utils lib32-libpulse lib32-alsa-plugins lib32-libxcomposite \
+    lib32-libxinerama lib32-ncurses lib32-libxml2 lib32-freetype2 lib32-libpng lib32-sdl2
+
 # Core gaming packages
+log "Installing gaming platforms and tools..."
 sudo pacman -S --noconfirm steam lutris gamescope \
-    goverlay mangohud lib32-mangohud gamemode lib32-gamemode \
-    wine-staging winetricks
+    goverlay mangohud lib32-mangohud gamemode lib32-gamemode
 
 # ProtonUp-Qt for Proton-GE management
 if pacman -Q protonup-qt &>/dev/null; then
