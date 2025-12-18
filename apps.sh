@@ -7,7 +7,7 @@ NC='\033[0m'
 log() { echo -e "${GREEN}[+]${NC} $1"; }
 
 log "Installing general applications..."
-sudo pacman -S --noconfirm firefox nemo nemo-fileroller libreoffice-fresh \
+sudo pacman -S --noconfirm firefox chromium nemo nemo-fileroller libreoffice-fresh \
     zathura zathura-pdf-mupdf ttf-cascadia-code-nerd noto-fonts-emoji \
     ffmpeg gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad \
     gst-plugins-ugly gst-libav libva-mesa-driver libva-utils \
@@ -29,6 +29,13 @@ if pacman -Q lact &>/dev/null; then
 else
     log "Installing LACT (GPU control)..."
     paru -S lact
+fi
+
+log "Installing Chromium Widevine for DRM content (Spotify, Netflix, etc.)..."
+if pacman -Q chromium-widevine &>/dev/null; then
+    log "Chromium Widevine already installed"
+else
+    paru -S --noconfirm chromium-widevine
 fi
 
 log "Setting GTK dark theme..."

@@ -59,7 +59,7 @@ sudo pacman -S --noconfirm gnome-disk-utility gparted
 sudo pacman -S --noconfirm btop ncdu
 
 # Quality of life CLI tools
-sudo pacman -S --noconfirm ripgrep fd bat eza fzf zoxide rsync
+sudo pacman -S --noconfirm ripgrep fd bat eza fzf zoxide rsync glow less
 
 log "Installing TUI tools (choose appropriate versions, e.g., pacseek option 1)..."
 paru -S wiremix bluetuith impala pacseek
