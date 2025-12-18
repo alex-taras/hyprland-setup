@@ -35,6 +35,7 @@ show_keybinds() {
 - `SUPER + Scroll` - Next/Prev Workspace
 
 ## System
+- `SUPER + Q` - Toggle Waybar
 - `SUPER + SHIFT + Q` - Logout Menu
 - `SUPER + P` - Random Wallpaper
 - `SUPER + K` - Keybind Help
