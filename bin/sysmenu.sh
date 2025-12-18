@@ -29,10 +29,23 @@ confirm_action() {
 }
 execute_action() {
     case "$1" in
+        "Packages")
+            kitty --detach $HOME/bin/pkg-install.sh &
+            sleep 0.1
+            pkill -P $$ kitty
+            ;;
         "AUR")
             kitty --detach $HOME/bin/pkg-aur-install.sh &
             sleep 0.1
             pkill -P $$ kitty
+            ;;
+        "Help")
+            kitty --detach $HOME/bin/keybind-help.sh &
+            sleep 0.1
+            pkill -P $$ kitty
+            ;;
+        "Lock")
+            hyprctl dispatch exec hyprlock
             ;;
         "Shutdown")
             confirm_action "Shutdown" && systemctl poweroff
@@ -65,10 +78,15 @@ main_gum() {
     
     # Calculate max width dynamically from menu items
     max_width=$(printf '%s\n' \
+        " Packages" \
         "󰏖 AUR" \
+        "󰞋 Help" \
+        "━━━━━━━━━━" \
+        " Lock" \
         "󰤁 Shutdown" \
         "󰜉 Reboot" \
         "󰍃 Logout" \
+        "━━━━━━━━━━" \
         "󰠚 Cancel" | wc -L)
     
     # Calculate horizontal padding to center the menu
@@ -78,10 +96,15 @@ main_gum() {
     
     # Center the menu block itself
     choice=$(gum choose --header="" \
+        "${left_pad}$(gum style --align center --width $max_width ' Packages')" \
         "${left_pad}$(gum style --align center --width $max_width '󰏖 AUR     ')" \
+        "${left_pad}$(gum style --align center --width $max_width '󰞋 Help    ')" \
+        "${left_pad}$(gum style --align center --width $max_width --foreground '#888888' '━━━━━━━━━━')" \
+        "${left_pad}$(gum style --align center --width $max_width ' Lock    ')" \
         "${left_pad}$(gum style --align center --width $max_width '󰤁 Shutdown')" \
         "${left_pad}$(gum style --align center --width $max_width '󰜉 Reboot  ')" \
         "${left_pad}$(gum style --align center --width $max_width '󰍃 Logout  ')" \
+        "${left_pad}$(gum style --align center --width $max_width --foreground '#888888' '━━━━━━━━━━')" \
         "${left_pad}$(gum style --align center --width $max_width '󰠚 Cancel  ')")
     # Strip padding and icon prefix
     action=$(echo "$choice" | xargs | sed 's/^[^ ]* //')

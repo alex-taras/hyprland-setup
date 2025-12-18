@@ -20,6 +20,7 @@ show_keybinds() {
 - `SUPER + SHIFT + W` - WhatsApp Web
 - `SUPER + E` - ProtonMail
 - `SUPER + M` - Spotify
+- `SUPER + L` - Plex
 
 ## Window Management
 - `SUPER + W` - Close Window
