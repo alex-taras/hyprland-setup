@@ -58,6 +58,11 @@ sudo pacman -S --noconfirm gnome-disk-utility gparted
 # Bonus TUI utilities
 sudo pacman -S --noconfirm btop ncdu
 
+# Music Player Daemon
+log "Installing MPD and clients..."
+sudo pacman -S --noconfirm mpd mpc
+paru -S --noconfirm rmpc
+
 # Quality of life CLI tools
 sudo pacman -S --noconfirm ripgrep fd bat eza fzf zoxide rsync glow less
 

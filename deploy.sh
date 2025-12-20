@@ -71,6 +71,22 @@ else
     warn "No LibreWolf user.js found in dotfiles, skipping..."
 fi
 
+# Deploy MPD playlists
+log "Deploying MPD playlists..."
+if [ -d "$SCRIPT_DIR/dotfiles/mpd/playlists" ]; then
+    mkdir -p "$HOME/.mpd/playlists"
+    cp "$SCRIPT_DIR/dotfiles/mpd/playlists"/*.m3u "$HOME/.mpd/playlists/"
+    log "Deployed MPD playlists to ~/.mpd/playlists/"
+    
+    # Update MPD database if it's running
+    if systemctl --user is-active mpd &>/dev/null; then
+        mpc update &>/dev/null || true
+        log "Updated MPD database"
+    fi
+else
+    warn "No MPD playlists found in dotfiles, skipping..."
+fi
+
 # Deploy bin scripts to ~/bin
 log "Deploying scripts to ~/bin..."
 if [ -d "$SCRIPT_DIR/bin" ]; then
