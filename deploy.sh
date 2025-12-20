@@ -52,6 +52,25 @@ else
     warn "No dotfiles directory found, skipping..."
 fi
 
+# Deploy LibreWolf user.js to all profiles
+log "Deploying LibreWolf configuration..."
+if [ -f "$SCRIPT_DIR/dotfiles/librewolf/user.js" ]; then
+    if [ -d "$HOME/.librewolf" ]; then
+        # Find all profile directories (exclude 'Profile Groups')
+        for profile in "$HOME/.librewolf"/*.default*; do
+            if [ -d "$profile" ]; then
+                profile_name=$(basename "$profile")
+                cp "$SCRIPT_DIR/dotfiles/librewolf/user.js" "$profile/"
+                log "Deployed user.js to LibreWolf profile: $profile_name"
+            fi
+        done
+    else
+        warn "~/.librewolf not found - LibreWolf may not be installed or run it once to create profiles"
+    fi
+else
+    warn "No LibreWolf user.js found in dotfiles, skipping..."
+fi
+
 # Deploy bin scripts to ~/bin
 log "Deploying scripts to ~/bin..."
 if [ -d "$SCRIPT_DIR/bin" ]; then
@@ -107,6 +126,28 @@ if [ -d "$SCRIPT_DIR/Pictures" ]; then
     log "Deployed $wallpaper_count wallpapers"
 else
     warn "No Pictures directory found, skipping..."
+fi
+
+# Detect and set default browser in variables.conf
+log "Detecting installed browser..."
+BROWSER=""
+if pacman -Q firefox &>/dev/null; then
+    BROWSER="firefox"
+    log "Detected Firefox - setting as default browser"
+elif pacman -Q librewolf &>/dev/null; then
+    BROWSER="librewolf"
+    log "Detected LibreWolf - setting as default browser"
+else
+    warn "No browser detected (firefox or librewolf), keeping variables.conf as-is"
+fi
+
+if [ -n "$BROWSER" ]; then
+    if [ -f "$HOME/.config/hypr/variables.conf" ]; then
+        sed -i "s|^\$browser = .*|\$browser = $BROWSER|" "$HOME/.config/hypr/variables.conf"
+        log "Updated \$browser in variables.conf to: $BROWSER"
+    else
+        warn "~/.config/hypr/variables.conf not found, cannot set browser"
+    fi
 fi
 
 echo ""

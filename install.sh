@@ -27,6 +27,7 @@ echo "Continuing with remaining setup scripts..."
 echo ""
 
 bash "$SCRIPT_DIR/aur.sh"
+bash "$SCRIPT_DIR/browser.sh"
 bash "$SCRIPT_DIR/apps.sh"
 bash "$SCRIPT_DIR/hyprland.sh"
 bash "$SCRIPT_DIR/greeter.sh"
