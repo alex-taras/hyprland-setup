@@ -13,9 +13,9 @@ padding: 0 6px;
 .modules-left {
   background-color: rgba(29, 32, 33, 0.95);
   border: 1.5px solid #d65d0e;
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 0 12px;
-  margin-left: 10px;
+  margin-left: 5px;
   margin-top: 5px;
 }
 
@@ -23,7 +23,7 @@ padding: 0 6px;
 .modules-center {
   background-color: rgba(29, 32, 33, 0.95);
   border: 1.5px solid #d65d0e;
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 0 12px;
   margin-top: 5px;
 }
@@ -32,9 +32,9 @@ padding: 0 6px;
 .modules-right {
   background-color: rgba(29, 32, 33, 0.95);
   border: 1.5px solid #d65d0e;
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 0 12px;
-  margin-right: 10px;
+  margin-right: 5px;
   margin-top: 5px;
 }
 
@@ -87,7 +87,7 @@ padding: 0 6px;
 
 #info-group {
   background-color: rgba(30, 30, 46, 0.8);
-  border-radius: 8px;
+  border-radius: 5px;
   padding-left: 12px;
   padding-right: 12px;
 }
@@ -95,7 +95,7 @@ padding: 0 6px;
 tooltip {
   background-color: rgba(30, 30, 46, 1.0);
   border: 2px solid rgba(205, 214, 244, 0.5);
-  border-radius: 8px;
+  border-radius: 5px;
   padding: 8px;
 }
 
