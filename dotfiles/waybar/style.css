@@ -10,8 +10,8 @@ font-size: 18px;
 
 /* Left modules container */
 .modules-left {
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 1.5px solid #33ccff;
+  background-color: rgba(29, 32, 33, 0.95);
+  border: 1.5px solid #d65d0e;
   border-radius: 8px;
   padding: 2px 12px;
   margin-left: 10px;
@@ -20,8 +20,8 @@ font-size: 18px;
 
 /* Center modules container */
 .modules-center {
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 1.5px solid #33ccff;
+  background-color: rgba(29, 32, 33, 0.95);
+  border: 1.5px solid #d65d0e;
   border-radius: 8px;
   padding: 2px 12px;
   margin-top: 5px;
@@ -29,8 +29,8 @@ font-size: 18px;
 
 /* Right modules container */
 .modules-right {
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 1.5px solid #33ccff;
+  background-color: rgba(29, 32, 33, 0.95);
+  border: 1.5px solid #d65d0e;
   border-radius: 8px;
   padding: 2px 12px;
   margin-right: 10px;
