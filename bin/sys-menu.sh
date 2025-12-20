@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export $(cat ~/.config/gum/gum.conf | xargs)
+export $(cat ~/.config/gum/gum.conf 2>/dev/null | xargs) || true
 
 # TUI System Menu
 set -e
@@ -40,7 +40,7 @@ execute_action() {
             pkill -P $$ kitty
             ;;
         "Help")
-            kitty --detach $HOME/bin/keybind-help.sh &
+            kitty --detach $HOME/bin/sys-sys-keybind-help.sh &
             sleep 0.1
             pkill -P $$ kitty
             ;;
@@ -48,13 +48,19 @@ execute_action() {
             hyprctl dispatch exec hyprlock
             ;;
         "Shutdown")
-            confirm_action "Shutdown" && systemctl poweroff
+            if confirm_action "Shutdown"; then
+                $HOME/bin/sys-shutdown.sh
+            fi
             ;;
         "Reboot")
-            confirm_action "Reboot" && systemctl reboot
+            if confirm_action "Reboot"; then
+                $HOME/bin/sys-reboot.sh
+            fi
             ;;
         "Logout")
-            confirm_action "Logout" && logout_session
+            if confirm_action "Logout"; then
+                logout_session
+            fi
             ;;
         "Cancel"|*)
             exit 0
