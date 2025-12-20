@@ -8,8 +8,7 @@
       "custom/launcher",
       "custom/weather",
       "clock",
-      "custom/stock",
-      "custom/sonarr"
+      "mpd"
   ],
 
   "modules-center": ["hyprland/workspaces"],
@@ -21,6 +20,26 @@
       "pulseaudio",
       "custom/power"
   ],
+
+  "mpd": {
+      "format": "{stateIcon} {artist} - {title}",
+      "format-disconnected": "󰝛 Disconnected",
+      "format-stopped": "󰓛 Stopped",
+      "format-paused": "{stateIcon} {artist} - {title}",
+      "unknown-tag": "N/A",
+      "interval": 2,
+      "state-icons": {
+          "paused": "󰃂",
+          "playing": "󰃂"
+      },
+      "tooltip-format": "MPD: {artist} - {album} - {title}",
+      "tooltip-format-disconnected": "MPD disconnected",
+      "max-length": 50,
+      "on-click": "kitty --class floating-large -e rmpc",
+      "on-click-right": "mpc toggle",
+      "on-scroll-up": "mpc next",
+      "on-scroll-down": "mpc prev"
+  },
 
   "group/info-group": {
       "orientation": "horizontal",
