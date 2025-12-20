@@ -22,8 +22,6 @@ confirm_action() {
     gum confirm --default=false \
         --affirmative="Yes" \
         --negative="No" \
-        --prompt.foreground="#33ccff" \
-        --selected.foreground="#33ccff" \
         "$action?"
     return $?
 }
@@ -74,9 +72,6 @@ main_gum() {
     cols=$(tput cols)
     padding=$(( (rows - 4) / 2 ))
     printf '\n%.0s' $(seq 1 $padding)
-    export GUM_CHOOSE_CURSOR_FOREGROUND="#33ccff"
-    export GUM_CHOOSE_SELECTED_FOREGROUND="#33ccff"
-    export GUM_CHOOSE_ITEM_FOREGROUND="#cdd6f4"
     export GUM_CHOOSE_CURSOR=" "
     export GUM_CHOOSE_SHOW_HELP=false
     export GUM_CONFIRM_SHOW_HELP=false
@@ -105,12 +100,12 @@ main_gum() {
         "${left_pad}$(gum style --align center --width $max_width ' Packages')" \
         "${left_pad}$(gum style --align center --width $max_width '󰏖 AUR     ')" \
         "${left_pad}$(gum style --align center --width $max_width '󰞋 Help    ')" \
-        "${left_pad}$(gum style --align center --width $max_width --foreground '#888888' '━━━━━━━━━━')" \
+        "${left_pad}$(gum style --align center --width $max_width --foreground '#504945' '━━━━━━━━━━')" \
         "${left_pad}$(gum style --align center --width $max_width ' Lock    ')" \
         "${left_pad}$(gum style --align center --width $max_width '󰤁 Shutdown')" \
         "${left_pad}$(gum style --align center --width $max_width '󰜉 Reboot  ')" \
         "${left_pad}$(gum style --align center --width $max_width '󰍃 Logout  ')" \
-        "${left_pad}$(gum style --align center --width $max_width --foreground '#888888' '━━━━━━━━━━')" \
+        "${left_pad}$(gum style --align center --width $max_width --foreground '#504945' '━━━━━━━━━━')" \
         "${left_pad}$(gum style --align center --width $max_width '󰠚 Cancel  ')")
     # Strip padding and icon prefix
     action=$(echo "$choice" | xargs | sed 's/^[^ ]* //')
