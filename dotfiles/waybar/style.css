@@ -5,7 +5,7 @@ border: none;
 border-radius: 0;
 min-height: 0;
 font-family: 'CaskaydiaMono Nerd Font';
-font-size: 16px;
+font-size: 18px;
 }
 
 /* Left modules container */
@@ -13,8 +13,8 @@ font-size: 16px;
   background-color: rgba(0, 0, 0, 0.8);
   border: 1.5px solid #33ccff;
   border-radius: 8px;
-  padding: 0 8px;
-  margin-left: 20px;
+  padding: 2px 12px;
+  margin-left: 10px;
   margin-top: 5px;
 }
 
@@ -23,7 +23,7 @@ font-size: 16px;
   background-color: rgba(0, 0, 0, 0.8);
   border: 1.5px solid #33ccff;
   border-radius: 8px;
-  padding: 0 8px;
+  padding: 2px 12px;
   margin-top: 5px;
 }
 
@@ -32,8 +32,8 @@ font-size: 16px;
   background-color: rgba(0, 0, 0, 0.8);
   border: 1.5px solid #33ccff;
   border-radius: 8px;
-  padding: 0 8px;
-  margin-right: 20px;
+  padding: 2px 12px;
+  margin-right: 10px;
   margin-top: 5px;
 }
 
@@ -43,14 +43,14 @@ font-size: 16px;
 #clock,
 #custom-stock,
 #custom-sonarr {
-  padding: 0 8px;
+  padding: 2px 12px;
 }
 
 #bluetooth,
 #network,
 #pulseaudio,
 #custom-power {
-  padding: 0 8px;
+  padding: 2px 12px;
 }
 
 #workspaces button {
@@ -96,7 +96,7 @@ font-size: 16px;
 #info-group {
   background-color: rgba(30, 30, 46, 0.8);
   border-radius: 8px;
-  padding: 0 8px;
+  padding: 2px 12px;
 }
 
 tooltip {
