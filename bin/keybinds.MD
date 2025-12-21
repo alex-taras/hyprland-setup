@@ -13,7 +13,7 @@
 - `SUPER + SHIFT + W` - WhatsApp Web
 - `SUPER + E` - ProtonMail
 - `SUPER + M` - Spotify
-- `SUPER + L` - Plex
+- `SUPER + V` - Plex
 
 ## Window Management
 - `SUPER + W` - Close Window
@@ -33,6 +33,7 @@
 ## System
 - `SUPER + Q` - Toggle Waybar
 - `SUPER + SHIFT + Q` - System Menu
+- `SUPER + L` - Lock Screen
 - `SUPER + K` - Keybind Help (Markdown)
 - `SUPER + SHIFT + K` - Keybind Help (Pager)
 - `SUPER + P` - Random Wallpaper
