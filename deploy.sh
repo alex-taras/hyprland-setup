@@ -83,6 +83,12 @@ if [ -d "$SCRIPT_DIR/dotfiles/mpd/playlists" ]; then
         mpc update &>/dev/null || true
         log "Updated MPD database"
     fi
+    
+    # Enable mpd-mpris for playerctl integration
+    if pacman -Q mpd-mpris &>/dev/null; then
+        systemctl --user enable --now mpd-mpris &>/dev/null || true
+        log "Enabled mpd-mpris for media key support"
+    fi
 else
     warn "No MPD playlists found in dotfiles, skipping..."
 fi
