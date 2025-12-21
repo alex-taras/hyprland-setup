@@ -67,7 +67,7 @@ paru -S --noconfirm rmpc
 sudo pacman -S --noconfirm ripgrep fd bat eza fzf zoxide rsync glow less
 
 log "Installing TUI tools (choose appropriate versions, e.g., pacseek option 1)..."
-paru -S wiremix bluetuith impala pacseek
+paru -S wiremix bluetuith impala pacseek superfile
 
 # File sharing
 log "Installing LocalSend..."

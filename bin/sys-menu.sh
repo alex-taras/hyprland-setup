@@ -28,17 +28,24 @@ confirm_action() {
 execute_action() {
     case "$1" in
         "Packages")
-            kitty --detach $HOME/bin/pkg-install.sh &
+            kitty --detach --class floating-large -e $HOME/bin/pkg-install.sh &
             sleep 0.1
             pkill -P $$ kitty
             ;;
         "AUR")
-            kitty --detach $HOME/bin/pkg-aur-install.sh &
+            kitty --detach --class floating-large -e $HOME/bin/pkg-aur-install.sh &
             sleep 0.1
             pkill -P $$ kitty
             ;;
-        "Help")
-            kitty --detach $HOME/bin/sys-sys-keybind-help.sh &
+        "Update SYS")
+            if confirm_action "Update System"; then
+                kitty --detach --class floating-large -e $HOME/bin/sys-update.sh
+                sleep 0.1
+                pkill -P $$ kitty
+            fi
+            ;;
+        "Keybinds")
+            kitty --detach --class floating-medium -e $HOME/bin/sys-keybind-help.sh &
             sleep 0.1
             pkill -P $$ kitty
             ;;
@@ -79,15 +86,16 @@ main_gum() {
     
     # Calculate max width dynamically from menu items
     max_width=$(printf '%s\n' \
-        " Packages" \
+        " Packages" \
         "󰏖 AUR" \
-        "󰞋 Help" \
-        "━━━━━━━━━━" \
-        " Lock" \
+        "󰚰 Update SYS" \
+        "󰞋 Keybinds" \
+        "━━━━━━━━━━━━" \
+        " Lock" \
         "󰤁 Shutdown" \
         "󰜉 Reboot" \
         "󰍃 Logout" \
-        "━━━━━━━━━━" \
+        "━━━━━━━━━━━━" \
         "󰠚 Cancel" | wc -L)
     
     # Calculate horizontal padding to center the menu
@@ -97,16 +105,17 @@ main_gum() {
     
     # Center the menu block itself
     choice=$(gum choose --header="" \
-        "${left_pad}$(gum style --align center --width $max_width ' Packages')" \
-        "${left_pad}$(gum style --align center --width $max_width '󰏖 AUR     ')" \
-        "${left_pad}$(gum style --align center --width $max_width '󰞋 Help    ')" \
-        "${left_pad}$(gum style --align center --width $max_width --foreground '#504945' '━━━━━━━━━━')" \
-        "${left_pad}$(gum style --align center --width $max_width ' Lock    ')" \
-        "${left_pad}$(gum style --align center --width $max_width '󰤁 Shutdown')" \
-        "${left_pad}$(gum style --align center --width $max_width '󰜉 Reboot  ')" \
-        "${left_pad}$(gum style --align center --width $max_width '󰍃 Logout  ')" \
-        "${left_pad}$(gum style --align center --width $max_width --foreground '#504945' '━━━━━━━━━━')" \
-        "${left_pad}$(gum style --align center --width $max_width '󰠚 Cancel  ')")
+        "${left_pad}$(gum style --align center --width $max_width ' Packages  ')" \
+        "${left_pad}$(gum style --align center --width $max_width '󰏖 AUR       ')" \
+        "${left_pad}$(gum style --align center --width $max_width '󰏖 Update SYS')" \
+        "${left_pad}$(gum style --align center --width $max_width '󰞋 Keybinds  ')" \
+        "${left_pad}$(gum style --align center --width $max_width --foreground '#504945' '━━━━━━━━━━━━')" \
+        "${left_pad}$(gum style --align center --width $max_width ' Lock      ')" \
+        "${left_pad}$(gum style --align center --width $max_width '󰤁 Shutdown  ')" \
+        "${left_pad}$(gum style --align center --width $max_width '󰜉 Reboot    ')" \
+        "${left_pad}$(gum style --align center --width $max_width '󰍃 Logout    ')" \
+        "${left_pad}$(gum style --align center --width $max_width --foreground '#504945' '━━━━━━━━━━━━')" \
+        "${left_pad}$(gum style --align center --width $max_width '󰠚 Cancel    ')")
     # Strip padding and icon prefix
     action=$(echo "$choice" | xargs | sed 's/^[^ ]* //')
     execute_action "$action"

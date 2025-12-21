@@ -12,7 +12,7 @@ sudo pacman -S --noconfirm chromium nemo nemo-fileroller libreoffice-fresh \
     ffmpeg gstreamer gst-plugins-base gst-plugins-good gst-plugins-bad \
     gst-plugins-ugly gst-libav libva-mesa-driver libva-utils \
     nwg-look gnome-themes-extra gsettings-desktop-schemas dconf \
-    p7zip unrar unzip zip imv polkit-gnome gvfs-smb smbclient
+    p7zip unrar unzip zip imv polkit-gnome gvfs-smb smbclient vlc
 
 if pacman -Q dolphin &>/dev/null; then
     log "Removing dolphin..."
@@ -23,6 +23,10 @@ fi
 
 log "Setting nemo as default file manager..."
 xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+
+log "Setting VLC as default media player..."
+xdg-mime default vlc.desktop video/mp4 video/x-matroska video/avi video/mpeg video/quicktime video/x-msvideo video/webm
+xdg-mime default vlc.desktop audio/mpeg audio/x-wav audio/flac audio/ogg audio/mp4 audio/x-vorbis+ogg audio/x-opus+ogg
 
 if pacman -Q lact &>/dev/null; then
     log "LACT already installed"
