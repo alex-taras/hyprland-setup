@@ -31,11 +31,19 @@ execute_action() {
             kitty --detach --class floating-large -e $HOME/bin/pkg-install.sh &
             sleep 0.1
             pkill -P $$ kitty
+            exec $0
             ;;
         "AUR")
             kitty --detach --class floating-large -e $HOME/bin/pkg-aur-install.sh &
             sleep 0.1
             pkill -P $$ kitty
+            exec $0
+            ;;
+        "Uninstall")
+            kitty --detach --class floating-large -e $HOME/bin/pkg-remove.sh &
+            sleep 0.1
+            pkill -P $$ kitty
+            exec $0
             ;;
         "Update SYS")
             if confirm_action "Update System"; then
@@ -43,11 +51,6 @@ execute_action() {
                 sleep 0.1
                 pkill -P $$ kitty
             fi
-            ;;
-        "Keybinds")
-            kitty --detach --class floating-medium -e $HOME/bin/sys-keybind-help.sh &
-            sleep 0.1
-            pkill -P $$ kitty
             ;;
         "Lock")
             hyprctl dispatch exec hyprlock
@@ -76,10 +79,7 @@ execute_action() {
             if confirm_action "Logout"; then
                 logout_session
             fi
-            ;;
-        "Cancel"|*)
-            exit 0
-            ;;
+            ;;        
     esac
 }
 main_gum() {
@@ -90,23 +90,21 @@ main_gum() {
     padding=$(( (rows - 4) / 2 ))
     printf '\n%.0s' $(seq 1 $padding)
     export GUM_CHOOSE_CURSOR=" "
-    export GUM_CHOOSE_SHOW_HELP=false
+    # export GUM_CHOOSE_SHOW_HELP=false
     export GUM_CONFIRM_SHOW_HELP=false
     export GUM_CHOOSE_HEADER=""
     
     # Calculate max width dynamically from menu items
     max_width=$(printf '%s\n' \
-        " Packages" \
+        "󱧕 Packages" \
         "󰏖 AUR" \
+        "󱧙 Uninstall" \
         "󰚰 Update SYS" \
-        "󰞋 Keybinds" \
         "━━━━━━━━━━━━" \
-        " Lock" \
+        " Lock" \
         "󰤁 Shutdown" \
         "󰜉 Reboot" \
-        "󰍃 Logout" \
-        "━━━━━━━━━━━━" \
-        "󰠚 Cancel" | wc -L)
+        "󰍃 Logout" | wc -L)
     
     # Calculate horizontal padding to center the menu
     h_padding=$(( (cols - max_width) / 2 ))
@@ -115,17 +113,15 @@ main_gum() {
     
     # Center the menu block itself
     choice=$(gum choose --header="" \
-        "${left_pad}$(gum style --align center --width $max_width ' Packages  ')" \
+        "${left_pad}$(gum style --align center --width $max_width '󱧕 Packages  ')" \
         "${left_pad}$(gum style --align center --width $max_width '󰏖 AUR       ')" \
-        "${left_pad}$(gum style --align center --width $max_width '󰏖 Update SYS')" \
-        "${left_pad}$(gum style --align center --width $max_width '󰞋 Keybinds  ')" \
+        "${left_pad}$(gum style --align center --width $max_width '󱧙 Uninstall ')" \
+        "${left_pad}$(gum style --align center --width $max_width '󰚰 Update SYS')" \
         "${left_pad}$(gum style --align center --width $max_width --foreground '#504945' '━━━━━━━━━━━━')" \
         "${left_pad}$(gum style --align center --width $max_width ' Lock      ')" \
         "${left_pad}$(gum style --align center --width $max_width '󰤁 Shutdown  ')" \
         "${left_pad}$(gum style --align center --width $max_width '󰜉 Reboot    ')" \
-        "${left_pad}$(gum style --align center --width $max_width '󰍃 Logout    ')" \
-        "${left_pad}$(gum style --align center --width $max_width --foreground '#504945' '━━━━━━━━━━━━')" \
-        "${left_pad}$(gum style --align center --width $max_width '󰠚 Cancel    ')")
+        "${left_pad}$(gum style --align center --width $max_width '󰍃 Logout    ')")
     # Strip padding and icon prefix
     action=$(echo "$choice" | xargs | sed 's/^[^ ]* //')
     execute_action "$action"
