@@ -17,6 +17,7 @@
 
 ## Window Management
 - `SUPER + W` - Close Window
+- `SUPER + TAB` - Cycle Next Window
 - `SUPER + T` - Fullscreen (Max)
 - `SUPER + SHIFT + T` - Toggle Floating
 - `SUPER + S` - Toggle Split

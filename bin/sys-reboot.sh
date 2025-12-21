@@ -1,5 +1,10 @@
 #!/bin/bash
 
-$HOME/bin/hypr-close-all-windows.sh
-sleep 1 # Allow apps like Firefox to shutdown correctly
-exec systemctl reboot --no-wall
+# Load gum theme
+export $(cat ~/.config/gum/gum.conf 2>/dev/null | xargs) || true
+
+# Show reboot message with spinner
+gum spin --spinner dot --title "Rebooting..." -- sleep 5 2>/dev/null
+
+# Reboot
+systemctl reboot 2>/dev/null

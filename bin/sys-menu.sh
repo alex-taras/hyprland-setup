@@ -54,9 +54,19 @@ execute_action() {
             ;;
         "Shutdown")
             if confirm_action "Shutdown"; then
-                $HOME/bin/sys-shutdown.sh
+                kitty --detach --class floating-small -e $HOME/bin/sys-shutdown.sh &
+                sleep 0.1
+                pkill -P $$ kitty
             fi
             ;;
+        "Reboot")
+            if confirm_action "Reboot"; then
+                kitty --detach --class floating-small -e $HOME/bin/sys-reboot.sh &
+                sleep 0.1
+                pkill -P $$ kitty
+            fi
+            ;;
+
         "Reboot")
             if confirm_action "Reboot"; then
                 $HOME/bin/sys-reboot.sh
