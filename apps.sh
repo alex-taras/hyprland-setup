@@ -29,6 +29,9 @@ log "Setting VLC as default media player..."
 xdg-mime default vlc.desktop video/mp4 video/x-matroska video/avi video/mpeg video/quicktime video/x-msvideo video/webm
 xdg-mime default vlc.desktop audio/mpeg audio/x-wav audio/flac audio/ogg audio/mp4 audio/x-vorbis+ogg audio/x-opus+ogg
 
+log "Setting imv as default image viewer..."
+xdg-mime default imv.desktop image/png image/jpeg image/jpg image/gif image/webp image/bmp image/svg+xml
+
 if pacman -Q lact &>/dev/null; then
     log "LACT already installed"
 else

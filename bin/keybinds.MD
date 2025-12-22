@@ -36,7 +36,9 @@
 - `SUPER + L` - Lock Screen
 - `SUPER + K` - Keybind Help (Markdown)
 - `SUPER + SHIFT + K` - Keybind Help (Pager)
-- `SUPER + P` - Random Wallpaper
+- `SUPER + O` - Random Wallpaper
+- `SUPER + P` - Screenshot (Full Screen)
+- `SUPER + SHIFT + P` - Screenshot (Select Area)
 
 ## Media Keys
 - `Volume Up/Down` - Adjust Volume
