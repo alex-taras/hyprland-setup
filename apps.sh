@@ -13,7 +13,7 @@ sudo pacman -S --noconfirm chromium nemo nemo-fileroller libreoffice-fresh \
     gst-plugins-ugly gst-libav libva-mesa-driver libva-utils \
     nwg-look gnome-themes-extra gsettings-desktop-schemas dconf \
     p7zip unrar unzip zip imv polkit-gnome gvfs-smb smbclient vlc \
-    qalculate-gtk
+    qalculate-gtk tumbler
 
 if pacman -Q dolphin &>/dev/null; then
     log "Removing dolphin..."
