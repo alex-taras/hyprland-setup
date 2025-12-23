@@ -60,7 +60,7 @@ sudo pacman -S --noconfirm btop ncdu
 
 # Music Player Daemon
 log "Installing MPD and clients..."
-sudo pacman -S --noconfirm mpd mpc
+sudo pacman -S --noconfirm mpd mpc nfs-utils
 paru -S --noconfirm rmpc mpd-mpris
 
 # Quality of life CLI tools
