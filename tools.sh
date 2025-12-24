@@ -52,8 +52,21 @@ log "Configuring UFW for LocalSend..."
 sudo ufw allow 53317/tcp comment 'LocalSend'
 sudo ufw allow 53317/udp comment 'LocalSend'
 
+# Allow Samba ports
+log "Configuring UFW for Samba..."
+sudo ufw allow 139/tcp comment 'Samba'
+sudo ufw allow 445/tcp comment 'Samba'
+sudo ufw allow 137/udp comment 'Samba'
+sudo ufw allow 138/udp comment 'Samba'
+
 # Disk management
 sudo pacman -S --noconfirm gnome-disk-utility gparted
+
+# Samba file sharing
+log "Installing Samba..."
+sudo pacman -S --noconfirm samba
+log "Enabling Samba services..."
+sudo systemctl enable --now smb nmb
 
 # Bonus TUI utilities
 sudo pacman -S --noconfirm btop ncdu

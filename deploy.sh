@@ -93,6 +93,20 @@ else
     warn "No MPD playlists found in dotfiles, skipping..."
 fi
 
+# Deploy Samba configuration
+log "Deploying Samba configuration..."
+if [ -f "$SCRIPT_DIR/dotfiles/smb.conf" ]; then
+    if pacman -Q samba &>/dev/null; then
+        sudo cp "$SCRIPT_DIR/dotfiles/smb.conf" /etc/samba/smb.conf
+        log "Deployed smb.conf to /etc/samba/"
+        warn "Don't forget to set Samba password with: sudo smbpasswd -a $USER"
+    else
+        warn "Samba not installed, skipping smb.conf deployment"
+    fi
+else
+    warn "No smb.conf found in dotfiles, skipping..."
+fi
+
 # Deploy bin scripts to ~/bin
 log "Deploying scripts to ~/bin..."
 if [ -d "$SCRIPT_DIR/bin" ]; then
