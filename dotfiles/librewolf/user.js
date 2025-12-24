@@ -22,3 +22,8 @@ user_pref("browser.search.update", true);
 // Don't delete cookies and site data on shutdown (stay logged in)
 user_pref("privacy.sanitize.sanitizeOnShutdown", false);
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
+
+// Enable form autofill
+user_pref("dom.forms.autocomplete.formautofill", true);
+user_pref("extensions.formautofill.addresses.enabled", true);
+user_pref("signon.autofillForms", true);
