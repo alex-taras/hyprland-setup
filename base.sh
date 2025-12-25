@@ -48,6 +48,10 @@ else
     sudo pacman -S --noconfirm linux-cachyos linux-cachyos-headers
 fi
 
+log "Disabling systemd-networkd-wait-online (conflicts with NetworkManager)..."
+sudo systemctl disable systemd-networkd-wait-online.service
+sudo systemctl mask systemd-networkd-wait-online.service
+
 log "Done! CachyOS kernel installed."
 log "Run 'bash bootloader.sh' to configure Limine bootloader automatically."
 log "Then reboot to cachyos kernel before continuing with install.sh --continue"
