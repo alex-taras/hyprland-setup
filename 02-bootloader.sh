@@ -73,13 +73,19 @@ sudo cp "$LIMINE_CONF" "$LIMINE_CONF.backup.$(date +%Y%m%d_%H%M%S)"
 log "Adding CachyOS kernel entry..."
 TEMP_CONF=$(mktemp)
 
-# Write CachyOS entry
+# Write CachyOS and Zen kernel entries
 cat > "$TEMP_CONF" << EOF
 /Arch Linux (linux-cachyos)
     protocol: linux
     path: boot():/vmlinuz-linux-cachyos
     cmdline: root=PARTUUID=$PARTUUID zswap.enabled=0 ${ROOTFLAGS}rw rootfstype=$FSTYPE quiet loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0 plymouth.ignore-serial-consoles amdgpu.ppfeaturemask=0xffffffff
     module_path: boot():/initramfs-linux-cachyos.img
+
+/Arch Linux (linux-zen)
+    protocol: linux
+    path: boot():/vmlinuz-linux-zen
+    cmdline: root=PARTUUID=$PARTUUID zswap.enabled=0 ${ROOTFLAGS}rw rootfstype=$FSTYPE quiet loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0 plymouth.ignore-serial-consoles amdgpu.ppfeaturemask=0xffffffff
+    module_path: boot():/initramfs-linux-zen.img
 
 EOF
 

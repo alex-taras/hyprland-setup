@@ -48,6 +48,12 @@ else
     sudo pacman -S --noconfirm linux-cachyos linux-cachyos-headers
 fi
 
+if pacman -Q linux-zen &>/dev/null; then
+    log "Zen kernel already installed"
+else
+    sudo pacman -S --noconfirm linux-zen linux-zen-headers
+fi
+
 log "Disabling systemd-networkd-wait-online (conflicts with NetworkManager)..."
 sudo systemctl disable systemd-networkd-wait-online.service
 sudo systemctl mask systemd-networkd-wait-online.service
