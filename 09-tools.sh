@@ -112,3 +112,9 @@ log "  LocalSend port 53317 (TCP/UDP) allowed through firewall"
 log ""
 log "File Sharing:"
 log "  localsend - cross-platform file sharing"
+
+# Disable systemd power button handling (let Hyprland handle it)
+log "Configuring power button to use Hyprland instead of systemd..."
+sudo sed -i 's/#HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
+sudo sed -i 's/HandlePowerKey=poweroff/HandlePowerKey=ignore/' /etc/systemd/logind.conf
+log "Power button will now trigger Hyprland keybind (sys-menu)"

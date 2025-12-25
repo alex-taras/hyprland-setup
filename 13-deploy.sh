@@ -122,6 +122,7 @@ log "Deploying scripts to ~/bin..."
 if [ -d "$SCRIPT_DIR/bin" ]; then
     mkdir -p "$HOME/bin"
     
+    # Deploy .sh scripts
     for script in "$SCRIPT_DIR/bin"/*.sh; do
         if [ -f "$script" ]; then
             scriptname=$(basename "$script")
@@ -141,6 +142,12 @@ if [ -d "$SCRIPT_DIR/bin" ]; then
             log "Copied $scriptname to ~/bin/"
         fi
     done
+    
+    # Deploy keybinds.MD
+    if [ -f "$SCRIPT_DIR/bin/keybinds.MD" ]; then
+        cp "$SCRIPT_DIR/bin/keybinds.MD" "$HOME/bin/"
+        log "Copied keybinds.MD to ~/bin/"
+    fi
     
     # Ensure ~/bin is in PATH
     if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
