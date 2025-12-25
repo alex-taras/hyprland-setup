@@ -30,8 +30,19 @@ if ! pacman -Q linux-cachyos &>/dev/null; then
 fi
 
 # Check if CachyOS entry already exists
+CACHY_EXISTS=false
+ZEN_EXISTS=false
 if grep -q "vmlinuz-linux-cachyos" "$LIMINE_CONF"; then
     log "CachyOS kernel entry already exists in limine.conf"
+    CACHY_EXISTS=true
+fi
+if grep -q "vmlinuz-linux-zen" "$LIMINE_CONF"; then
+    log "Zen kernel entry already exists in limine.conf"
+    ZEN_EXISTS=true
+fi
+
+if [ "$CACHY_EXISTS" = true ] && [ "$ZEN_EXISTS" = true ]; then
+    log "Both kernel entries already exist, nothing to do"
     exit 0
 fi
 
@@ -69,18 +80,26 @@ fi
 log "Backing up limine.conf..."
 sudo cp "$LIMINE_CONF" "$LIMINE_CONF.backup.$(date +%Y%m%d_%H%M%S)"
 
-# Create temporary file with new entry at the top
-log "Adding CachyOS kernel entry..."
+# Create temporary file with new entries at the top
 TEMP_CONF=$(mktemp)
 
-# Write CachyOS and Zen kernel entries
-cat > "$TEMP_CONF" << EOF
+# Add CachyOS entry if missing
+if [ "$CACHY_EXISTS" = false ]; then
+    log "Adding CachyOS kernel entry..."
+    cat >> "$TEMP_CONF" << EOF
 /Arch Linux (linux-cachyos)
     protocol: linux
     path: boot():/vmlinuz-linux-cachyos
     cmdline: root=PARTUUID=$PARTUUID zswap.enabled=0 ${ROOTFLAGS}rw rootfstype=$FSTYPE quiet loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0 plymouth.ignore-serial-consoles amdgpu.ppfeaturemask=0xffffffff
     module_path: boot():/initramfs-linux-cachyos.img
 
+EOF
+fi
+
+# Add Zen entry if missing
+if [ "$ZEN_EXISTS" = false ]; then
+    log "Adding Zen kernel entry..."
+    cat >> "$TEMP_CONF" << EOF
 /Arch Linux (linux-zen)
     protocol: linux
     path: boot():/vmlinuz-linux-zen
@@ -88,6 +107,7 @@ cat > "$TEMP_CONF" << EOF
     module_path: boot():/initramfs-linux-zen.img
 
 EOF
+fi
 
 # Append original config
 cat "$LIMINE_CONF" >> "$TEMP_CONF"
