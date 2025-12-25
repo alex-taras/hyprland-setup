@@ -69,12 +69,6 @@ execute_action() {
                 pkill -P $$ kitty
             fi
             ;;
-
-        "Reboot")
-            if confirm_action "Reboot"; then
-                $HOME/bin/sys-reboot.sh
-            fi
-            ;;
         "Logout")
             if confirm_action "Logout"; then
                 logout_session
