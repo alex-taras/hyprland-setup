@@ -36,7 +36,7 @@ bash "$SCRIPT_DIR/09-tools.sh"
 bash "$SCRIPT_DIR/10-apps.sh"
 bash "$SCRIPT_DIR/11-dev.sh"
 bash "$SCRIPT_DIR/12-gaming.sh"
-bash "$SCRIPT_DIR/14-deploy.sh"
+bash "$SCRIPT_DIR/13-deploy.sh"
 
 echo ""
 echo "============================================"

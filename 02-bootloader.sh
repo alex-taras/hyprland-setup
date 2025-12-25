@@ -103,4 +103,12 @@ echo ""
 warn "Review $LIMINE_CONF to verify the entry is correct"
 warn "Backup saved to: $LIMINE_CONF.backup.*"
 echo ""
-log "Reboot to use the CachyOS kernel"
+
+read -p "Reboot now to CachyOS kernel? (y/N) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    log "Rebooting..."
+    sudo reboot
+else
+    log "Reboot skipped. Run 'sudo reboot' when ready."
+fi
