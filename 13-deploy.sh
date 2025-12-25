@@ -117,6 +117,15 @@ else
     warn "No smb.conf found in dotfiles, skipping..."
 fi
 
+# Deploy sysctl quiet printk config
+log "Deploying sysctl quiet printk configuration..."
+if [ -f "$SCRIPT_DIR/dotfiles/20-quiet-printk.conf" ]; then
+    sudo cp "$SCRIPT_DIR/dotfiles/20-quiet-printk.conf" /etc/sysctl.d/20-quiet-printk.conf
+    log "Deployed 20-quiet-printk.conf to /etc/sysctl.d/"
+else
+    warn "No 20-quiet-printk.conf found in dotfiles, skipping..."
+fi
+
 # Deploy bin scripts to ~/bin
 log "Deploying scripts to ~/bin..."
 if [ -d "$SCRIPT_DIR/bin" ]; then

@@ -14,7 +14,7 @@ log "Installing Plymouth..."
 sudo pacman -S --noconfirm plymouth
 
 log "Configuring mkinitcpio hooks..."
-sudo sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect microcode modconf kms keyboard keymap consolefont block filesystems plymouth fsck)/' /etc/mkinitcpio.conf
+sudo sed -i 's/^HOOKS=.*/HOOKS=(base systemd autodetect microcode modconf kms keyboard sd-vconsole block filesystems plymouth)/' /etc/mkinitcpio.conf
 
 log "Installing arch-mac-style theme..."
 if [ -f "$SCRIPT_DIR/plymouth/arch-mac-style.zip" ]; then
