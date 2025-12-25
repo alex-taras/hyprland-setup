@@ -55,8 +55,18 @@ fi
 # Deploy LibreWolf user.js to all profiles
 log "Deploying LibreWolf configuration..."
 if [ -f "$SCRIPT_DIR/dotfiles/librewolf/user.js" ]; then
-    if [ -d "$HOME/.librewolf" ]; then
-        # Find all profile directories (exclude 'Profile Groups')
+    if pacman -Q librewolf &>/dev/null; then
+        # Start LibreWolf to create profile if needed
+        if [ ! -d "$HOME/.librewolf" ]; then
+            log "Starting LibreWolf to create profile..."
+            librewolf --headless &
+            LIBREWOLF_PID=$!
+            sleep 3
+            kill $LIBREWOLF_PID 2>/dev/null || true
+            wait $LIBREWOLF_PID 2>/dev/null || true
+        fi
+        
+        # Find all profile directories
         for profile in "$HOME/.librewolf"/*.default*; do
             if [ -d "$profile" ]; then
                 profile_name=$(basename "$profile")
@@ -65,7 +75,7 @@ if [ -f "$SCRIPT_DIR/dotfiles/librewolf/user.js" ]; then
             fi
         done
     else
-        warn "~/.librewolf not found - LibreWolf may not be installed or run it once to create profiles"
+        warn "LibreWolf not installed, skipping user.js deployment"
     fi
 else
     warn "No LibreWolf user.js found in dotfiles, skipping..."
