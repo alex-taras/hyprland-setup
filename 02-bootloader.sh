@@ -78,7 +78,7 @@ cat > "$TEMP_CONF" << EOF
 /Arch Linux (linux-cachyos)
     protocol: linux
     path: boot():/vmlinuz-linux-cachyos
-    cmdline: root=PARTUUID=$PARTUUID zswap.enabled=0 ${ROOTFLAGS}rw rootfstype=$FSTYPE quiet loglevel=3 vt.global_cursor_default=0 splash
+    cmdline: root=PARTUUID=$PARTUUID zswap.enabled=0 ${ROOTFLAGS}rw rootfstype=$FSTYPE quiet loglevel=3 rd.udev.log_level=3 vt.global_cursor_default=0 splash plymouth.ignore-serial-consoles amdgpu.ppfeaturemask=0xffffffff
     module_path: boot():/initramfs-linux-cachyos.img
 
 EOF
