@@ -75,12 +75,14 @@ sudo pacman -S --noconfirm btop ncdu
 log "Installing MPD and clients..."
 sudo pacman -S --noconfirm mpd mpc nfs-utils
 paru -S --noconfirm rmpc mpd-mpris
+systemctl --user enable --now mpd
+systemctl --user enable --now mpd-mpris
 
 # Quality of life CLI tools
 sudo pacman -S --noconfirm ripgrep fd bat eza fzf zoxide rsync glow less
 
 log "Installing TUI tools (choose appropriate versions, e.g., pacseek option 1)..."
-paru -S wiremix bluetuith impala pacseek superfile
+paru -S wiremix bluetui impala pacseek superfile
 
 # File sharing
 log "Installing LocalSend..."

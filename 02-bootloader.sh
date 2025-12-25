@@ -10,16 +10,18 @@ log() { echo -e "${GREEN}[+]${NC} $1"; }
 warn() { echo -e "${YELLOW}[!]${NC} $1"; }
 error() { echo -e "${RED}[ERROR]${NC} $1"; }
 
-LIMINE_CONF="/boot/EFI/arch-limine/limine.conf"
-
 log "Configuring Limine bootloader for CachyOS kernel..."
 
-# Check if limine.conf exists
-if [ ! -f "$LIMINE_CONF" ]; then
-    error "Limine config not found at $LIMINE_CONF"
+# Find limine.conf in /boot
+LIMINE_CONF=$(find /boot -name "limine.conf" 2>/dev/null | head -1)
+
+if [ -z "$LIMINE_CONF" ]; then
+    error "Limine config not found in /boot"
     error "This script is designed for Limine bootloader"
     exit 1
 fi
+
+log "Found Limine config at: $LIMINE_CONF"
 
 # Check if CachyOS kernel is installed
 if ! pacman -Q linux-cachyos &>/dev/null; then

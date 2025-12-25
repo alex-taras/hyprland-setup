@@ -10,7 +10,7 @@ log "Installing Hyprland tools..."
 sudo pacman -S --noconfirm waybar starship hypridle hyprlock cliphist wl-clipboard
 
 log "Installing AUR packages (choose appropriate versions)..."
-paru -S walker-git elephant-all gum wttrbar hyprmon swww hyprshot
+paru -S elephant-all-bin walker-bin gum wttrbar hyprmon-bin swww hyprshot
 
 log "Configuring hypridle..."
 mkdir -p ~/.config/hypr
