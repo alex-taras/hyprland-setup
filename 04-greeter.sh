@@ -50,6 +50,13 @@ command = "Hyprland -c /etc/greetd/hyprland-greeter-config.conf"
 user = "greeter"
 EOF
 
+log "Configuring greetd to suppress boot spam..."
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+sudo mkdir -p /etc/systemd/system/greetd.service.d
+sudo cp "$SCRIPT_DIR/dotfiles/greetd-no-spam.conf" /etc/systemd/system/greetd.service.d/no-spam.conf
+sudo systemctl daemon-reload
+log "Greetd drop-in configured to clean TTY and suppress errors"
+
 log "Greeter configured! sysc-greet-hyprland will launch automatically."
 warn "Restart greetd or reboot to see the new greeter:"
 warn "  sudo systemctl restart greetd (will kill current session!)"
