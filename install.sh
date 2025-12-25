@@ -26,7 +26,7 @@ echo ""
 echo "Continuing with remaining setup scripts..."
 echo ""
 
-bash "$SCRIPT_DIR/13-aur.sh"
+bash "$SCRIPT_DIR/03-aur.sh"
 bash "$SCRIPT_DIR/04-greeter.sh"
 bash "$SCRIPT_DIR/05-hyprland.sh"
 bash "$SCRIPT_DIR/06-waydroid-network.sh"
