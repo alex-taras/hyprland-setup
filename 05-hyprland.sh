@@ -12,33 +12,8 @@ sudo pacman -S --noconfirm waybar starship hypridle hyprlock cliphist wl-clipboa
 log "Installing AUR packages (choose appropriate versions)..."
 paru -S elephant-all-bin walker-bin gum wttrbar hyprmon-bin swww hyprshot
 
-log "Configuring hypridle..."
-mkdir -p ~/.config/hypr
-if [ ! -f ~/.config/hypr/hypridle.conf ]; then
-    cat > ~/.config/hypr/hypridle.conf << 'EOF'
-general {
-    lock_cmd = pidof hyprlock || hyprlock
-    before_sleep_cmd = loginctl lock-session
-    after_sleep_cmd = notify-send "Welcome back!"
-}
-
-listener {
-    timeout = 600  # 10 minutes
-    on-timeout = loginctl lock-session
-}
-
-listener {
-    timeout = 900  # 15 minutes
-    on-timeout = hyprctl dispatch dpms off
-    on-resume = hyprctl dispatch dpms on
-}
-EOF
-    log "Created hypridle.conf (lock after 10min, screen off after 15min)"
-else
-    log "hypridle.conf already exists, skipping"
-fi
-
 log "Hyprland tools installed!"
+log "hypridle.conf will be deployed by 13-deploy.sh"
 log "Remember to add to your hyprland autostart:"
 log "  exec-once = swww-daemon"
 log "  exec-once = hypridle"
