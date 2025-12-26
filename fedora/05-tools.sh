@@ -88,28 +88,14 @@ else
     sudo systemctl enable --now NetworkManager
 fi
 
-log "Installing UFW firewall..."
-if rpm -q ufw &>/dev/null; then
-    log "UFW already installed"
-else
-    sudo dnf install -y ufw
-fi
+log "Configuring firewalld for Waydroid..."
+# Add waydroid0 to trusted zone
+sudo firewall-cmd --zone=trusted --add-interface=waydroid0 --permanent || true
 
-log "Enabling UFW..."
-if systemctl is-enabled ufw &>/dev/null; then
-    log "UFW already enabled"
-else
-    sudo systemctl enable --now ufw
-    sudo ufw --force enable
-fi
+# Enable masquerading on your main zone (probably FedoraWorkstation)
+sudo firewall-cmd --zone=FedoraWorkstation --add-masquerade --permanent || true
 
-log "Configuring UFW rules..."
-sudo ufw allow 53317/tcp comment 'LocalSend' || true
-sudo ufw allow 53317/udp comment 'LocalSend' || true
-sudo ufw allow 139/tcp comment 'Samba' || true
-sudo ufw allow 445/tcp comment 'Samba' || true
-sudo ufw allow 137/udp comment 'Samba' || true
-sudo ufw allow 138/udp comment 'Samba' || true
+sudo firewall-cmd --reload || true
 
 log "Installing Samba..."
 if rpm -q samba &>/dev/null; then
