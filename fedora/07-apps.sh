@@ -38,4 +38,11 @@ mkdir -p ~/bin
 cp -r ../bin/* ~/bin/
 chmod +x ~/bin/*.sh
 
+log "Installing Spotify (Flatpak)..."
+if flatpak list | grep -q com.spotify.Client; then
+    log "Spotify already installed"
+else
+    flatpak install -y flathub com.spotify.Client
+fi
+
 log "Apps installed and bin scripts deployed!"
