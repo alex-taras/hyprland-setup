@@ -35,18 +35,18 @@ else
     systemctl --user enable --now mpd
 fi
 
-log "Installing mpd-mpris for media key support..."
-if rpm -q mpd-mpris &>/dev/null; then
-    log "mpd-mpris already installed"
+log "Installing mpdris2 for media key support..."
+if rpm -q mpdris2 &>/dev/null; then
+    log "mpdris2 already installed"
 else
-    sudo dnf install -y mpd-mpris
+    sudo dnf install -y mpdris2
 fi
 
-log "Enabling mpd-mpris service..."
-if systemctl --user is-enabled mpd-mpris &>/dev/null; then
-    log "mpd-mpris service already enabled"
+log "Enabling mpdris2 service..."
+if systemctl --user is-enabled mpdris2 &>/dev/null; then
+    log "mpdris2 service already enabled"
 else
-    systemctl --user enable --now mpd-mpris
+    systemctl --user enable --now mpdris2
 fi
 
 # btop - system monitor
