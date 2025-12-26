@@ -42,11 +42,11 @@ else
     sudo dnf install -y mpdris2
 fi
 
-log "Enabling mpdris2 service..."
-if systemctl --user is-enabled mpdris2 &>/dev/null; then
-    log "mpdris2 service already enabled"
+log "Enabling mpDris2 service..."
+if systemctl --user is-enabled mpDris2 &>/dev/null; then
+    log "mpDris2 service already enabled"
 else
-    systemctl --user enable --now mpdris2
+    systemctl --user enable --now mpDris2
 fi
 
 # btop - system monitor
