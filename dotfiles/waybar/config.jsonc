@@ -79,7 +79,7 @@
 
   "custom/launcher": {
       "format": "󱗼",
-      "on-click": "walker",
+      "on-click": "wofi --width=900 --height=500 --gtk-dark -a --allow-images --show drun --prompt \"...\"",
       "on-click-right": "kitty",
       "tooltip-format": "Application Launcher"
   },
