@@ -96,9 +96,16 @@ else
     log "xfce-polkit already in autostart"
 fi
 
-log "Deploying wofi config..."
-mkdir -p ~/.config/wofi
-cp -r ../dotfiles/wofi/* ~/.config/wofi/
+log "Installing rofi..."
+if rpm -q rofi &>/dev/null; then
+    log "rofi already installed"
+else
+    sudo dnf install -y rofi
+fi
+
+log "Deploying rofi config..."
+mkdir -p ~/.config/rofi
+cp -r ../dotfiles/rofi/* ~/.config/rofi/
 
 log "Starting xfce-polkit..."
 /usr/libexec/xfce-polkit &
