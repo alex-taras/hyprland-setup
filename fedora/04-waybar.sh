@@ -35,6 +35,20 @@ else
     systemctl --user enable --now mpd
 fi
 
+log "Installing mpd-mpris for media key support..."
+if rpm -q mpd-mpris &>/dev/null; then
+    log "mpd-mpris already installed"
+else
+    sudo dnf install -y mpd-mpris
+fi
+
+log "Enabling mpd-mpris service..."
+if systemctl --user is-enabled mpd-mpris &>/dev/null; then
+    log "mpd-mpris service already enabled"
+else
+    systemctl --user enable --now mpd-mpris
+fi
+
 # btop - system monitor
 if rpm -q btop &>/dev/null; then
     log "btop already installed"
