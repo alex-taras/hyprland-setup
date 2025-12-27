@@ -51,11 +51,22 @@ else
 fi
 
 log "Installing Qt theme tools..."
-if rpm -q kvantum &>/dev/null; then
-    log "Kvantum already installed"
+if rpm -q kvantum qt6ct &>/dev/null; then
+    log "Qt theme tools already installed"
 else
-    sudo dnf install -y kvantum
+    sudo dnf install -y kvantum qt6ct
 fi
+
+log "Configuring qt6ct for dark theme..."
+mkdir -p ~/.config/qt6ct
+cat > ~/.config/qt6ct/qt6ct.conf <<EOF
+[Appearance]
+color_scheme_path=/usr/share/qt6ct/colors/darker.conf
+style=kvantum-dark
+
+[Fonts]
+general=@Variant(\0\0\0@\0\0\0\x1a\0\x43\0\x61\0s\0k\0\x61\0y\0\x64\0i\0\x61\0M\0o\0n\0o@(\0\0\0\0\0\0\xff\xff\xff\xff\x5\x1\0\x32\x10)
+EOF
 
 log "Installing Hyprland tools..."
 
