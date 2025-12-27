@@ -127,9 +127,6 @@ mkdir -p ~/.config/rofi
 echo 'configuration { show-icons: true; }' > ~/.config/rofi/config.rasi
 echo '@theme "~/.local/share/rofi/themes/rounded-gruvebox-dark.rasi"' >> ~/.config/rofi/config.rasi
 
-log "Starting xfce-polkit..."
-/usr/libexec/xfce-polkit &
-
 log "Reloading Hyprland config..."
 hyprctl reload
 
