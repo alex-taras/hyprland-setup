@@ -34,5 +34,21 @@ for mime in text/plain text/x-log text/x-python text/x-shellscript text/x-csrc t
     xdg-mime default code.desktop "$mime" 2>/dev/null || true
 done
 
+log "Installing PulseView (Logic Analyzer)..."
+if rpm -q pulseview &>/dev/null; then
+    log "PulseView already installed"
+else
+    sudo dnf install -y pulseview
+fi
+
+log "Setting up USB permissions for PulseView..."
+if groups | grep -q dialout; then
+    log "User already in dialout group"
+else
+    sudo usermod -aG dialout $USER
+    log "Added user to dialout group (re-login required)"
+fi
+
 log "Coding tools installed!"
 log "VSCode: run 'code' to launch (set as default text editor)"
+log "PulseView: run 'pulseview' (re-login required for USB access)"
