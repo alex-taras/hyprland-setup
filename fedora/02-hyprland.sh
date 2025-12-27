@@ -20,11 +20,14 @@ else
     sudo dnf install -y waybar
 fi
 
-log "Installing fonts..."
-if rpm -q cascadia-mono-nf-fonts &>/dev/null; then
+log "Installing CaskaydiaMono Nerd Font..."
+if fc-list | grep -q "CaskaydiaMono Nerd Font"; then
     log "CaskaydiaMono Nerd Font already installed"
 else
-    sudo dnf install -y cascadia-mono-nf-fonts
+    mkdir -p ~/.local/share/fonts
+    unzip -o ../fonts/CascadiaMono.zip -d ~/.local/share/fonts/
+    fc-cache -f -v
+    log "CaskaydiaMono Nerd Font installed"
 fi
 
 log "Setting system-wide dark theme..."
