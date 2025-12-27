@@ -9,28 +9,33 @@ font-size: 18px;
 padding: 0 6px;
 }
 
-/* Main window - continuous bar */
-window#waybar {
-  background-color: rgba(29, 32, 33, 0.95);
-  border: none;
-  border-radius: 0;
-  margin: 8px 10px 0px 10px;  /* top right bottom left - matches hypr gaps_out */
-  padding: 4px 0px;  /* vertical padding for content centering */
-}
-
-/* Left modules container - no individual styling */
+/* Left modules container */
 .modules-left {
+  background-color: rgba(29, 32, 33, 0.95);
+  border: 1.5px solid #d65d0e;
+  border-radius: 5px;
   padding: 0 12px;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
-/* Center modules container - no individual styling */
+/* Center modules container */
 .modules-center {
+  background-color: rgba(29, 32, 33, 0.95);
+  border: 1.5px solid #d65d0e;
+  border-radius: 5px;
   padding: 0 12px;
+  margin-top: 5px;
 }
 
-/* Right modules container - no individual styling */
+/* Right modules container */
 .modules-right {
+  background-color: rgba(29, 32, 33, 0.95);
+  border: 1.5px solid #d65d0e;
+  border-radius: 5px;
   padding: 0 12px;
+  margin-right: 5px;
+  margin-top: 5px;
 }
 
 /* MPD widget */
