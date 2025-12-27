@@ -79,7 +79,7 @@
 
   "custom/launcher": {
       "format": "󱗼",
-      "on-click": "rofi -show drun",
+      "on-click": "rofi -show drun -font \"CaskaydiaMono Nerd Font 18\" -show-icons",
       "on-click-right": "kitty",
       "tooltip-format": "Application Launcher"
   },

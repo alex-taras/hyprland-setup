@@ -103,9 +103,15 @@ else
     sudo dnf install -y rofi
 fi
 
-log "Deploying rofi config..."
+log "Deploying rofi themes..."
+mkdir -p ~/.local/share/rofi/themes
+cp ../dotfiles/rofi/rounded-gruvebox-dark.rasi ~/.local/share/rofi/themes/
+cp -r ../dotfiles/rofi/template ~/.local/share/rofi/themes/
+
+log "Setting rofi theme..."
 mkdir -p ~/.config/rofi
-cp -r ../dotfiles/rofi/* ~/.config/rofi/
+echo 'configuration { show-icons: true; }' > ~/.config/rofi/config.rasi
+echo '@theme "~/.local/share/rofi/themes/rounded-gruvebox-dark.rasi"' >> ~/.config/rofi/config.rasi
 
 log "Starting xfce-polkit..."
 /usr/libexec/xfce-polkit &
