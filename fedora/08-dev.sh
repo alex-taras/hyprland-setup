@@ -29,6 +29,17 @@ else
     sudo dnf install -y code
 fi
 
+log "Configuring VSCode settings..."
+mkdir -p ~/.config/Code/User
+cat > ~/.config/Code/User/settings.json <<EOF
+{
+    "editor.fontFamily": "CaskaydiaMono Nerd Font",
+    "editor.fontSize": 16,
+    "terminal.integrated.fontFamily": "CaskaydiaMono Nerd Font",
+    "terminal.integrated.fontSize": 16
+}
+EOF
+
 log "Setting VSCode as default text editor..."
 for mime in text/plain text/x-log text/x-python text/x-shellscript text/x-csrc text/x-c++src text/x-makefile text/markdown application/x-yaml application/json application/xml text/x-script.python application/x-shellscript; do
     xdg-mime default code.desktop "$mime" 2>/dev/null || true
