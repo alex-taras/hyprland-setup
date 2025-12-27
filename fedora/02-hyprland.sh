@@ -30,43 +30,7 @@ else
     log "CaskaydiaMono Nerd Font installed"
 fi
 
-log "Setting system-wide dark theme..."
-gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 
-mkdir -p ~/.config/gtk-3.0
-if grep -q "gtk-application-prefer-dark-theme" ~/.config/gtk-3.0/settings.ini 2>/dev/null; then
-    log "GTK3 dark theme already set"
-else
-    echo "[Settings]" >> ~/.config/gtk-3.0/settings.ini
-    echo "gtk-application-prefer-dark-theme=1" >> ~/.config/gtk-3.0/settings.ini
-fi
-
-mkdir -p ~/.config/gtk-4.0
-if grep -q "gtk-application-prefer-dark-theme" ~/.config/gtk-4.0/settings.ini 2>/dev/null; then
-    log "GTK4 dark theme already set"
-else
-    echo "[Settings]" >> ~/.config/gtk-4.0/settings.ini
-    echo "gtk-application-prefer-dark-theme=1" >> ~/.config/gtk-4.0/settings.ini
-fi
-
-log "Installing Qt theme tools..."
-if rpm -q kvantum qt6ct &>/dev/null; then
-    log "Qt theme tools already installed"
-else
-    sudo dnf install -y kvantum qt6ct
-fi
-
-log "Configuring qt6ct for dark theme..."
-mkdir -p ~/.config/qt6ct
-cat > ~/.config/qt6ct/qt6ct.conf <<EOF
-[Appearance]
-color_scheme_path=/usr/share/qt6ct/colors/darker.conf
-style=kvantum-dark
-
-[Fonts]
-general=@Variant(\0\0\0@\0\0\0\x1a\0\x43\0\x61\0s\0k\0\x61\0y\0\x64\0i\0\x61\0M\0o\0n\0o@(\0\0\0\0\0\0\xff\xff\xff\xff\x5\x1\0\x32\x10)
-EOF
 
 log "Installing Hyprland tools..."
 
