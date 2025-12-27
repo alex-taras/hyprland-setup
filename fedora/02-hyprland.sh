@@ -77,6 +77,20 @@ else
     sudo dnf install -y swww
 fi
 
+# Hyprlock and hypridle
+if rpm -q hyprlock hypridle &>/dev/null; then
+    log "hyprlock and hypridle already installed"
+else
+    sudo dnf install -y hyprlock hypridle
+fi
+
+# brightnessctl for screen dimming
+if rpm -q brightnessctl &>/dev/null; then
+    log "brightnessctl already installed"
+else
+    sudo dnf install -y brightnessctl
+fi
+
 log "Installing polkit authentication agent..."
 if rpm -q xfce-polkit &>/dev/null; then
     log "xfce-polkit already installed"
