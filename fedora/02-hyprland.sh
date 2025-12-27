@@ -13,6 +13,13 @@ else
     sudo dnf install -y hyprland
 fi
 
+log "Installing sysc-greet greeter..."
+if command -v sysc-greet &>/dev/null; then
+    log "sysc-greet already installed"
+else
+    curl -fsSL https://raw.githubusercontent.com/Nomadcxx/sysc-greet/master/install.sh | sudo bash
+fi
+
 log "Installing waybar..."
 if rpm -q waybar &>/dev/null; then
     log "waybar already installed"
