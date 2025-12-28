@@ -68,6 +68,73 @@ window#waybar {
   padding: 8px;
 }
 
+/* Tray context menu styling (Gruvbox colors) */
+#tray menu,
+#tray menu box,
+#tray menu window,
+#tray menu decoration {
+  background: rgba(60, 56, 54, 1.0);
+  border: none;
+  padding: 4px;
+  box-shadow: none;
+  outline: none;
+}
+
+#tray menu *,
+#tray menu box *,
+#tray menu window * {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+#tray menuitem {
+  font-family: "Cascadia Mono NF";
+  font-size: 16px;
+  color: #fbf1c7;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+#tray menuitem *,
+#tray menuitem label {
+  font-family: "Cascadia Mono NF";
+  font-size: 16px;
+  color: #fbf1c7;
+  background: transparent;
+  border: none;
+}
+
+#tray menuitem:hover {
+  background-color: #d65d0e;
+  color: #fbf1c7;
+  border-radius: 10px;
+}
+
+#tray menuitem:hover *,
+#tray menuitem:hover label {
+  font-family: "Cascadia Mono NF";
+  font-size: 16px;
+  background-color: transparent;
+  color: #fbf1c7;
+}
+
+#tray menuitem:selected {
+  background-color: #d65d0e;
+  color: #fbf1c7;
+  border-radius: 10px;
+}
+
+#tray menuitem:selected *,
+#tray menuitem:selected label {
+  font-family: "Cascadia Mono NF";
+  font-size: 16px;
+  background-color: transparent;
+  color: #fbf1c7;
+}
+
 #custom-stock.up {
   color: #a6e3a1;
 }
