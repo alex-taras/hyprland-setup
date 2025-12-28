@@ -9,7 +9,7 @@ log() { echo -e "${GREEN}[+]${NC} $1"; }
 log "Installing general applications..."
 
 # File managers & productivity
-sudo dnf install -y nemo nemo-fileroller libreoffice zathura zathura-pdf-mupdf
+sudo dnf install -y nemo nemo-fileroller libreoffice zathura zathura-pdf-mupdf gedit
 
 # Fonts & icons
 sudo dnf install -y google-noto-emoji-fonts
@@ -32,6 +32,9 @@ xdg-mime default vlc.desktop video/mp4 video/x-matroska video/avi video/mpeg \
 log "Setting imv as default image viewer..."
 xdg-mime default imv.desktop image/png image/jpeg image/jpg image/gif \
     image/webp image/bmp image/svg+xml
+
+log "Setting gedit as default text editor..."
+xdg-mime default org.gnome.gedit.desktop text/plain text/x-log text/x-readme
 
 log "Deploying bin scripts..."
 mkdir -p ~/bin

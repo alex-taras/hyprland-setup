@@ -40,8 +40,9 @@ cat > ~/.config/Code/User/settings.json <<EOF
 }
 EOF
 
-log "Setting VSCode as default text editor..."
-for mime in text/plain text/x-log text/x-python text/x-shellscript text/x-csrc text/x-c++src text/x-makefile text/markdown application/x-yaml application/json application/xml text/x-script.python application/x-shellscript; do
+log "Setting VSCode as default editor for code files..."
+# Only set VSCode for code-specific mime types (gedit handles plain text)
+for mime in text/x-python text/x-shellscript text/x-csrc text/x-c++src text/x-makefile text/markdown application/x-yaml application/json application/xml text/x-script.python application/x-shellscript; do
     xdg-mime default code.desktop "$mime" 2>/dev/null || true
 done
 
@@ -61,5 +62,5 @@ else
 fi
 
 log "Coding tools installed!"
-log "VSCode: run 'code' to launch (set as default text editor)"
+log "VSCode: run 'code' to launch (set as default for code files)"
 log "PulseView: run 'pulseview' (re-login required for USB access)"
