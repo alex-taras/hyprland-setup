@@ -128,6 +128,10 @@ else
     cargo install rmpc
 fi
 
+log "Deploying rmpc config..."
+mkdir -p ~/.config/rmpc/themes
+cp -r ../dotfiles/rmpc/* ~/.config/rmpc/
+
 log "Installing CLI tools..."
 sudo dnf install -y ripgrep fd-find bat fzf zoxide rsync glow --skip-unavailable
 

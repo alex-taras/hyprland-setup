@@ -57,6 +57,13 @@ else
     log "Gruvbox icon pack not found in ~/Downloads/gruvbox/, skipping..."
 fi
 
+# Configure GTK 2.0
+log "Configuring GTK 2.0..."
+mkdir -p ~/.config/gtk-2.0
+cat > ~/.config/gtk-2.0/gtkrc <<'EOF'
+gtk-font-name="CaskaydiaMono Nerd Font 14"
+EOF
+
 # Configure GTK 3.0
 log "Configuring GTK 3.0..."
 mkdir -p ~/.config/gtk-3.0
@@ -64,7 +71,7 @@ cat > ~/.config/gtk-3.0/settings.ini <<'EOF'
 [Settings]
 gtk-theme-name=Gruvbox-Orange-Dark-Medium
 gtk-icon-theme-name=Gruvbox-Plus-Dark
-gtk-font-name=Cantarell 14
+gtk-font-name=CaskaydiaMono Nerd Font 14
 gtk-cursor-theme-name=Adwaita
 gtk-cursor-theme-size=24
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
@@ -84,7 +91,7 @@ log "Configuring GTK 4.0..."
 mkdir -p ~/.config/gtk-4.0
 cat > ~/.config/gtk-4.0/settings.ini <<'EOF'
 [Settings]
-gtk-font-name=Cantarell 14
+gtk-font-name=CaskaydiaMono Nerd Font 14
 gtk-cursor-theme-name=Adwaita
 gtk-cursor-theme-size=24
 gtk-application-prefer-dark-theme=1
@@ -94,7 +101,7 @@ EOF
 log "Applying GTK theme via gsettings..."
 gsettings set org.gnome.desktop.interface gtk-theme "Gruvbox-Orange-Dark-Medium"
 gsettings set org.gnome.desktop.interface icon-theme "Gruvbox-Plus-Dark"
-gsettings set org.gnome.desktop.interface font-name "Cantarell 14"
+gsettings set org.gnome.desktop.interface font-name "CaskaydiaMono Nerd Font 14"
 gsettings set org.gnome.desktop.interface monospace-font-name "CaskaydiaMono Nerd Font Mono 14"
 
 # Configure Kvantum
@@ -118,7 +125,7 @@ style=kvantum
 
 [Fonts]
 fixed="CaskaydiaMono Nerd Font Mono,14,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
-general="Cantarell,14,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+general="CaskaydiaMono Nerd Font,14,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
 
 [Interface]
 activate_item_on_single_click=1
@@ -156,7 +163,7 @@ style=kvantum
 
 [Fonts]
 fixed="CaskaydiaMono Nerd Font Mono,14,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
-general="Cantarell,14,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
+general="CaskaydiaMono Nerd Font,14,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"
 
 [Interface]
 activate_item_on_single_click=1
@@ -396,5 +403,5 @@ log "  - GTK 3/4: Gruvbox-Orange-Dark-Medium theme"
 log "  - Qt 5/6: Kvantum with gruvbox-kvantum theme"
 log "  - KDE: GruvboxDark color scheme"
 log "  - Icons: Gruvbox-Plus-Dark"
-log "  - Fonts: Cantarell 14 (UI), CaskaydiaMono Nerd Font Mono 14 (monospace)"
+log "  - Fonts: CaskaydiaMono Nerd Font 14 (UI & monospace)"
 log "  - Nemo: Universal large sizing (no per-directory zoom)"

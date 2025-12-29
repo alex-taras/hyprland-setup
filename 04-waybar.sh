@@ -16,8 +16,8 @@ else
 fi
 
 log "Deploying MPD config..."
-mkdir -p ~/.mpd
-cp -r ../dotfiles/mpd/* ~/.mpd/
+mkdir -p ~/.config/mpd
+cp -r ../dotfiles/mpd/* ~/.config/mpd/
 
 log "Disabling system MPD service..."
 if systemctl is-enabled mpd &>/dev/null 2>&1; then
@@ -47,6 +47,22 @@ if systemctl --user is-enabled mpDris2 &>/dev/null; then
     log "mpDris2 service already enabled"
 else
     systemctl --user enable --now mpDris2
+fi
+
+log "Installing cava (audio visualizer)..."
+if rpm -q cava &>/dev/null; then
+    log "cava already installed"
+else
+    sudo dnf install -y cava
+fi
+
+log "Creating MPD FIFO for cava..."
+if [ -p /tmp/mpd.fifo ]; then
+    log "MPD FIFO already exists"
+else
+    mkfifo /tmp/mpd.fifo
+    chmod 666 /tmp/mpd.fifo
+    log "Created /tmp/mpd.fifo for cava visualization"
 fi
 
 # btop - system monitor

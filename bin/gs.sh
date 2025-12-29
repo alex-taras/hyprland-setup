@@ -1,6 +1,7 @@
 #!/bin/bash
-W=$(hyprctl monitors -j | jq '.[] | select(.focused) | .width')
-H=$(hyprctl monitors -j | jq '.[] | select(.focused) | .height')
-R=$(hyprctl monitors -j | jq '.[] | select(.focused) | .refreshRate | floor')
+# Gamescope launcher - window will be moved to DP-2 via Hyprland rules
+W=$(hyprctl monitors -j | jq '.[] | select(.name == "DP-2") | .width')
+H=$(hyprctl monitors -j | jq '.[] | select(.name == "DP-2") | .height')
+R=$(hyprctl monitors -j | jq '.[] | select(.name == "DP-2") | .refreshRate | floor')
 
 gamescope --force-grab-cursor -W $W -H $H -r $R --adaptive-sync -f -- env MANGOHUD=1 "$@"

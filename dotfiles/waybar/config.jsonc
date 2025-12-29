@@ -35,7 +35,7 @@
       "tooltip-format": "MPD: {artist} - {album} - {title}",
       "tooltip-format-disconnected": "MPD disconnected",
       "max-length": 50,
-      "on-click": "kitty --class floating-large -e rmpc",
+      "on-click": "kitty -e rmpc",
       "on-click-right": "mpc toggle",
       "on-scroll-up": "mpc next",
       "on-scroll-down": "mpc prev"
