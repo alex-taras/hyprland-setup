@@ -1,6 +1,8 @@
+@import "palette.css";
+
 * {
 background-color: transparent;
-color: #d3869b;  /* Gruvbox light purple */
+color: @light-orange;
 border: none;
 border-radius: 0;
 min-height: 0;
@@ -36,17 +38,17 @@ window#waybar {
 /* MPD widget - Gruvbox light blue */
 #mpd {
   font-family: 'CaskaydiaMono Nerd Font Mono';
-  color: #83a598;
+  color: @light-blue;
 }
 
 /* Weather widget - Gruvbox light yellow */
 #custom-weather {
-  color: #fabd2f;
+  color: @light-yellow;
 }
 
 /* Clock widget - Gruvbox light yellow */
 #clock {
-  color: #fabd2f;
+  color: @light-yellow;
 }
 
 /* Workspaces - Gruvbox purple theme */
@@ -62,18 +64,42 @@ window#waybar {
   min-width: 9px;
   font-family: 'CaskaydiaMono Nerd Font';
   font-size: 18px;
-  color: #b16286;  /* Gruvbox purple */
+  color: @dark-purple;  /* Gruvbox purple */
   background: transparent;
   border: none;
 }
 
+#workspaces button * {
+  color: @dark-purple;  /* Gruvbox purple */
+}
+
+#workspaces button label {
+  color: @dark-purple;  /* Gruvbox purple */
+}
+
 #workspaces button.active {
-  color: #d3869b;  /* Gruvbox light purple */
+  color: @light-purple;  /* Gruvbox light purple */
+}
+
+#workspaces button.active * {
+  color: @light-purple;  /* Gruvbox light purple */
+}
+
+#workspaces button.active label {
+  color: @light-purple;  /* Gruvbox light purple */
 }
 
 #workspaces button.empty {
   opacity: 0.5;
-  color: #b16286;  /* Gruvbox purple */
+  color: @dark-purple;  /* Gruvbox purple */
+}
+
+#workspaces button.empty * {
+  color: @dark-purple;  /* Gruvbox purple */
+}
+
+#workspaces button.empty label {
+  color: @dark-purple;  /* Gruvbox purple */
 }
 
 #motherboard,
@@ -83,19 +109,19 @@ window#waybar {
 }
 
 #cpu {
-  color: #fb4934;  /* Gruvbox light red */
+  color: @light-red;  /* Gruvbox light red */
 }
 
 #memory {
-  color: #b8bb26;  /* Gruvbox light olive green */
+  color: @light-green;  /* Gruvbox light olive green */
 }
 
 #temperature {
-  color: #fabd2f;  /* Gruvbox light yellow */
+  color: @light-yellow;  /* Gruvbox light yellow */
 }
 
 #disk {
-  color: #83a598;  /* Gruvbox light blue */
+  color: @light-blue;  /* Gruvbox light blue */
 }
 
 #tray {
@@ -106,23 +132,23 @@ window#waybar {
 /* Module colors */
 #network,
 #custom-network {
-  color: #fbf1c7;  /* Gruvbox white */
+  color: @white;  /* Gruvbox white */
 }
 
 #bluetooth {
-  color: #83a598;  /* Gruvbox light blue */
+  color: @light-blue;  /* Gruvbox light blue */
 }
 
 #pulseaudio {
-  color: #b8bb26;  /* Gruvbox light green */
+  color: @light-green;  /* Gruvbox light green */
 }
 
 #custom-power {
-  color: #fb4934;  /* Gruvbox light red */
+  color: @light-red;  /* Gruvbox light red */
 }
 
 #custom-launcher {
-  color: #fbf1c7;  /* Gruvbox white */
+  color: @white;  /* Gruvbox white */
 }
 
 /* Tray context menu styling (Gruvbox colors) */
@@ -130,7 +156,7 @@ window#waybar {
 #tray menu box,
 #tray menu window,
 #tray menu decoration {
-  background: rgba(60, 56, 54, 1.0);
+  background: @bg1;
   border: none;
   padding: 4px;
   box-shadow: none;
@@ -148,7 +174,7 @@ window#waybar {
 #tray menuitem {
   font-family: "Cascadia Mono NF";
   font-size: 16px;
-  color: #fbf1c7;
+  color: @white;
   background: transparent;
   border: none;
   border-radius: 10px;
@@ -159,14 +185,14 @@ window#waybar {
 #tray menuitem label {
   font-family: "Cascadia Mono NF";
   font-size: 16px;
-  color: #fbf1c7;
+  color: @white;
   background: transparent;
   border: none;
 }
 
 #tray menuitem:hover {
-  background-color: #d65d0e;
-  color: #fbf1c7;
+  background-color: @dark-orange;
+  color: @white;
   border-radius: 10px;
 }
 
@@ -175,12 +201,12 @@ window#waybar {
   font-family: "Cascadia Mono NF";
   font-size: 16px;
   background-color: transparent;
-  color: #fbf1c7;
+  color: @white;
 }
 
 #tray menuitem:selected {
-  background-color: #d65d0e;
-  color: #fbf1c7;
+  background-color: @dark-orange;
+  color: @white;
   border-radius: 10px;
 }
 
@@ -189,7 +215,7 @@ window#waybar {
   font-family: "Cascadia Mono NF";
   font-size: 16px;
   background-color: transparent;
-  color: #fbf1c7;
+  color: @white;
 }
 
 #custom-stock.up {
@@ -216,6 +242,15 @@ tooltip {
   border: 2px solid rgba(205, 214, 244, 0.5);
   border-radius: 5px;
   padding: 8px;
+  color: @white;  /* Gruvbox white */
+}
+
+tooltip * {
+  color: @white;  /* Gruvbox white */
+}
+
+tooltip label {
+  color: @white;  /* Gruvbox white */
 }
 
 .hidden {
