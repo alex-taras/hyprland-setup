@@ -10,7 +10,7 @@
     fg0:    #D8DEE9;
     fg1:    #ECEFF4;
     fg2:    #D8DEE9;
-    fg3:    #D8DEE9;
+    fg3:    #ebdbb2;
 }
 
 @import "template/rounded-template.rasi"
