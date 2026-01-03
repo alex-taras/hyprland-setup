@@ -24,8 +24,8 @@
     highlight_border_style: (fg: "rgb(254, 128, 25)"),
     symbols: (song: "S", dir: "D", playlist: "P", marker: "M", ellipsis: "..."),
     progress_bar: (
-        symbols: [" ", "─", "●", "─", " "],
-        track_style: (fg: "#1e2030"),
+        symbols: [" ", "─", "●", "╌", " "],
+        track_style: (fg: "rgb(254, 128, 25)"),
         elapsed_style: (fg: "rgb(254, 128, 25)"),
         thumb_style: (fg: "rgb(254, 128, 25)", bg: "#1e2030"),
     ),
