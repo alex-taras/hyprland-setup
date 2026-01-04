@@ -22,6 +22,16 @@ else
     curl -fsSL https://raw.githubusercontent.com/Nomadcxx/sysc-greet/master/install.sh | sudo bash
 fi
 
+log "Deploying greetd configs..."
+if [ -d /etc/greetd ]; then
+    sudo cp ../dotfiles/greetd/config.toml /etc/greetd/
+    sudo cp ../dotfiles/greetd/hyprland-greeter-config.conf /etc/greetd/
+    sudo cp ../dotfiles/greetd/kitty.conf /etc/greetd/
+    log "Greetd configs deployed"
+else
+    log "WARNING: /etc/greetd not found, skipping greeter config deployment"
+fi
+
 log "Installing waybar..."
 if rpm -q waybar &>/dev/null; then
     log "waybar already installed"

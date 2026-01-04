@@ -123,6 +123,7 @@ hyprland-setup/
 ├── 09-gaming.sh
 ├── bin/                # Custom scripts
 ├── dotfiles/           # Configuration files
+│   ├── greetd/        # Greeter configs (sysc-greet)
 │   ├── hypr/          # Hyprland configs (Gruvbox theme)
 │   ├── kitty/         # Terminal config
 │   ├── waybar/        # Status bar config (Gruvbox)
