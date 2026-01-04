@@ -66,6 +66,7 @@ bash 09-gaming.sh        # DOSBox Staging
   - Used in: Waybar, Kitty, Rofi, Starship, Hyprlock, VSCode
 
 ### Hyprland Ecosystem
+- **start-hyprland** - Watchdog wrapper with crash recovery and safe mode
 - **Waybar** - Status bar with MPD, weather (wttrbar), custom scripts
 - **Rofi** - Application launcher with flatpak support
 - **Hyprlock** - Lock screen with blur, time, and date
@@ -174,6 +175,12 @@ hyprland-setup/
 ### Media Keys Not Working
 - Check mpdris2 service: `systemctl --user status mpDris2`
 - Restart if needed: `systemctl --user restart mpDris2`
+
+### Hyprland Crash Recovery
+- Hyprland is launched via `start-hyprland` wrapper (not direct `Hyprland` binary)
+- Provides automatic crash recovery and safe mode boot
+- Configured in `/usr/share/wayland-sessions/hyprland.desktop`
+- To pass arguments to Hyprland: `start-hyprland -- <args>`
 
 ## Post-Installation
 

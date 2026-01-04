@@ -1,5 +1,7 @@
 #!/bin/bash
 # hyprland.sh - Hyprland base installation
+# Note: Hyprland is launched via start-hyprland wrapper (crash recovery + safe mode)
+# Configured in /usr/share/wayland-sessions/hyprland.desktop
 
 set -e
 GREEN='\033[0;32m'
