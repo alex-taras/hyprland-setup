@@ -27,3 +27,8 @@ user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", false);
 user_pref("dom.forms.autocomplete.formautofill", true);
 user_pref("extensions.formautofill.addresses.enabled", true);
 user_pref("signon.autofillForms", true);
+
+// Enable password manager
+user_pref("signon.rememberSignons", true);
+user_pref("signon.generation.enabled", true);
+user_pref("signon.management.page.breach-alerts.enabled", true);
