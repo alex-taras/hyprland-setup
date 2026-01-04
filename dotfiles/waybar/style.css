@@ -13,7 +13,7 @@ padding: 0 6px;
 
 /* Main window - continuous bar */
 window#waybar {
-  background-color: rgba(29, 32, 33, 0.95);
+  background-color: rgba(29, 32, 33, 0.8);
   border: none;
   border-radius: 0;
   margin: 8px 10px 0px 10px;  /* top right bottom left - matches hypr gaps_out */
