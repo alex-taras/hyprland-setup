@@ -30,6 +30,11 @@ execute_action() {
         "Lock")
             hyprctl dispatch exec hyprlock
             ;;
+        "Update")
+            kitty --detach --class floating-medium -e sudo nobara-sync cli &
+            sleep 0.1
+            pkill -P $$ kitty
+            ;;
         "Shutdown")
             if confirm_action "Shutdown"; then
                 kitty --detach --class floating-small -e $HOME/bin/sys-shutdown.sh &
@@ -65,7 +70,8 @@ main_gum() {
     
     # Calculate max width dynamically from menu items
     max_width=$(printf '%s\n' \
-        " Lock       " \
+        "󰌾 Lock       " \
+        "󰚰 Update     " \
         "󰤁 Shutdown   " \
         "󰜉 Reboot     " \
         "󰍃 Logout     " | wc -L)
@@ -77,7 +83,8 @@ main_gum() {
     
     # Center the menu block itself
     choice=$(gum choose --header="" \
-        "${left_pad}$(gum style --align center --width $max_width ' Lock      ')" \
+        "${left_pad}$(gum style --align center --width $max_width '󰌾 Lock      ')" \
+        "${left_pad}$(gum style --align center --width $max_width '󰚰 Update    ')" \
         "${left_pad}$(gum style --align center --width $max_width '󰤁 Shutdown  ')" \
         "${left_pad}$(gum style --align center --width $max_width '󰜉 Reboot    ')" \
         "${left_pad}$(gum style --align center --width $max_width '󰍃 Logout    ')")
