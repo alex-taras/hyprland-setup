@@ -31,7 +31,7 @@ execute_action() {
             hyprctl dispatch exec hyprlock
             ;;
         "Update")
-            kitty --detach --class floating-medium -e sudo nobara-sync cli &
+            kitty --detach --class floating-medium -e $HOME/bin/sys-update.sh &
             sleep 0.1
             pkill -P $$ kitty
             ;;
