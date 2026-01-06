@@ -107,6 +107,51 @@ fi
 log "Enabling Samba services..."
 sudo systemctl enable --now smb nmb || true
 
+log "Configuring Samba shares..."
+# Add alext user to Samba (will prompt for password)
+if sudo pdbedit -L | grep -q "^alext:"; then
+    log "Samba user alext already exists"
+else
+    log "Adding Samba user alext (you will be prompted for password)..."
+    sudo smbpasswd -a alext
+fi
+
+# Configure shares in smb.conf
+if ! grep -q "\[DATA\]" /etc/samba/smb.conf; then
+    log "Adding DATA share to smb.conf..."
+    sudo tee -a /etc/samba/smb.conf > /dev/null <<EOF
+
+[DATA]
+    path = /mnt/DATA
+    valid users = alext
+    read only = no
+    browseable = yes
+    create mask = 0644
+    directory mask = 0755
+EOF
+else
+    log "DATA share already configured"
+fi
+
+if ! grep -q "\[WORK\]" /etc/samba/smb.conf; then
+    log "Adding WORK share to smb.conf..."
+    sudo tee -a /etc/samba/smb.conf > /dev/null <<EOF
+
+[WORK]
+    path = /mnt/WORK
+    valid users = alext
+    read only = no
+    browseable = yes
+    create mask = 0644
+    directory mask = 0755
+EOF
+else
+    log "WORK share already configured"
+fi
+
+log "Restarting Samba services..."
+sudo systemctl restart smb nmb
+
 log "Installing impala (WiFi TUI)..."
 if command -v impala &>/dev/null; then
     log "impala already installed"
