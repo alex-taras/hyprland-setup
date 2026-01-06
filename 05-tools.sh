@@ -149,6 +149,10 @@ else
     log "WORK share already configured"
 fi
 
+log "Configuring firewall for Samba..."
+sudo firewall-cmd --permanent --add-service=samba || true
+sudo firewall-cmd --reload || true
+
 log "Restarting Samba services..."
 sudo systemctl restart smb nmb
 
