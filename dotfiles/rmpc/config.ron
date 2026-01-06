@@ -155,13 +155,11 @@
             name: "Queue",
             pane: Split(
                 direction: Horizontal,
-                borders: "LEFT",
                 panes: [
                     (
                         size: "40%",
                         pane: Split(
                             direction: Vertical,
-                            borders: "RIGHT",
                             panes: [
                                 (
                                     size: "80%",
@@ -169,7 +167,6 @@
                                 ),
                                 (
                                     size: "20%",
-                                    borders: " TOP",
                                     pane: Pane(Cava),
                                 ),
                             ],
