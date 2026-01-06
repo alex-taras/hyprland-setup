@@ -150,8 +150,11 @@ else
 fi
 
 log "Configuring firewall for Samba..."
-sudo firewall-cmd --permanent --add-service=samba || true
+# Get the active zone (usually FedoraWorkstation)
+ACTIVE_ZONE=$(sudo firewall-cmd --get-default-zone)
+sudo firewall-cmd --zone=$ACTIVE_ZONE --permanent --add-service=samba || true
 sudo firewall-cmd --reload || true
+log "Added Samba service to firewall zone: $ACTIVE_ZONE"
 
 log "Restarting Samba services..."
 sudo systemctl restart smb nmb
