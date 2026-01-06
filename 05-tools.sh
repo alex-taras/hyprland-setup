@@ -15,7 +15,7 @@ fi
 
 log "Deploying gum config..."
 mkdir -p ~/.config/gum
-cp -r ../dotfiles/gum/* ~/.config/gum/
+cp -r ./dotfiles/gum/* ~/.config/gum/
 
 log "Installing core utilities..."
 if rpm -q jq curl bc socat &>/dev/null; then
@@ -175,7 +175,7 @@ fi
 
 log "Deploying rmpc config..."
 mkdir -p ~/.config/rmpc/themes
-cp -r ../dotfiles/rmpc/* ~/.config/rmpc/
+cp -r ./dotfiles/rmpc/* ~/.config/rmpc/
 
 log "Installing CLI tools..."
 sudo dnf install -y ripgrep fd-find bat fzf zoxide rsync glow --skip-unavailable

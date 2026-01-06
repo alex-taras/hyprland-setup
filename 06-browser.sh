@@ -23,7 +23,7 @@ else
 fi
 
 log "Deploying LibreWolf user.js..."
-if [ -f ../dotfiles/librewolf/user.js ]; then
+if [ -f ./dotfiles/librewolf/user.js ]; then
     # Check if LibreWolf profile exists
     if [ ! -d "$HOME/.librewolf" ]; then
         log "Creating LibreWolf profile..."
@@ -38,7 +38,7 @@ if [ -f ../dotfiles/librewolf/user.js ]; then
     for profile in "$HOME/.librewolf"/*.default*; do
         if [ -d "$profile" ]; then
             profile_name=$(basename "$profile")
-            cp ../dotfiles/librewolf/user.js "$profile/"
+            cp ./dotfiles/librewolf/user.js "$profile/"
             log "Deployed user.js to LibreWolf profile: $profile_name"
         fi
     done

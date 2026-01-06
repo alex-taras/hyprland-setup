@@ -17,7 +17,7 @@ fi
 
 log "Deploying MPD config..."
 mkdir -p ~/.config/mpd
-cp -r ../dotfiles/mpd/* ~/.config/mpd/
+cp -r ./dotfiles/mpd/* ~/.config/mpd/
 
 log "Disabling system MPD service..."
 if systemctl is-enabled mpd &>/dev/null 2>&1; then
@@ -92,7 +92,7 @@ fi
 
 log "Deploying waybar dotfiles..."
 mkdir -p ~/.config/waybar
-cp -r ../dotfiles/waybar/* ~/.config/waybar/
+cp -r ./dotfiles/waybar/* ~/.config/waybar/
 
 log "Deploying custom scripts..."
 mkdir -p ~/bin

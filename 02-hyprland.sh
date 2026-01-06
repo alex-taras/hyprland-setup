@@ -24,9 +24,9 @@ fi
 
 log "Deploying greetd configs..."
 if [ -d /etc/greetd ]; then
-    sudo cp ../dotfiles/greetd/config.toml /etc/greetd/
-    sudo cp ../dotfiles/greetd/hyprland-greeter-config.conf /etc/greetd/
-    sudo cp ../dotfiles/greetd/kitty.conf /etc/greetd/
+    sudo cp ./dotfiles/greetd/config.toml /etc/greetd/
+    sudo cp ./dotfiles/greetd/hyprland-greeter-config.conf /etc/greetd/
+    sudo cp ./dotfiles/greetd/kitty.conf /etc/greetd/
     log "Greetd configs deployed"
 else
     log "WARNING: /etc/greetd not found, skipping greeter config deployment"
@@ -97,7 +97,7 @@ fi
 
 log "Deploying Hyprland dotfiles..."
 mkdir -p ~/.config/hypr
-cp -r ../dotfiles/hypr/* ~/.config/hypr/
+cp -r ./dotfiles/hypr/* ~/.config/hypr/
 
 log "Adding xfce-polkit to autostart..."
 if ! grep -q "xfce-polkit" ~/.config/hypr/autostart.conf; then
@@ -116,8 +116,8 @@ fi
 
 log "Deploying rofi themes..."
 mkdir -p ~/.local/share/rofi/themes
-cp ../dotfiles/rofi/rounded-gruvebox-dark.rasi ~/.local/share/rofi/themes/
-cp -r ../dotfiles/rofi/template ~/.local/share/rofi/themes/
+cp ./dotfiles/rofi/rounded-gruvebox-dark.rasi ~/.local/share/rofi/themes/
+cp -r ./dotfiles/rofi/template ~/.local/share/rofi/themes/
 
 log "Setting rofi theme..."
 mkdir -p ~/.config/rofi

@@ -22,7 +22,7 @@ else
 fi
 
 log "Copying dotfiles..."
-cp -r ../dotfiles/starship.toml ~/.config/
-cp -r ../dotfiles/kitty ~/.config/
+cp -r ./dotfiles/starship.toml ~/.config/
+cp -r ./dotfiles/kitty ~/.config/
 
 log "Shell configured! Run 'exec bash' to reload."
