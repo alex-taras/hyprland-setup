@@ -6,6 +6,19 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 log() { echo -e "${GREEN}[+]${NC} $1"; }
 
+log "Removing Brave browser and repository (if installed)..."
+if rpm -q brave-browser &>/dev/null; then
+    sudo dnf remove -y brave-browser
+    log "Brave browser removed"
+else
+    log "Brave browser not installed"
+fi
+
+if [ -f /etc/yum.repos.d/brave-browser.repo ]; then
+    sudo rm -f /etc/yum.repos.d/brave-browser.repo
+    log "Brave repository removed"
+fi
+
 log "Installing browsers..."
 
 # Chromium
