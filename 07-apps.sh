@@ -9,7 +9,7 @@ log() { echo -e "${GREEN}[+]${NC} $1"; }
 log "Installing general applications..."
 
 # File managers & productivity
-sudo dnf install -y nemo nemo-fileroller libreoffice zathura zathura-pdf-mupdf gedit
+sudo dnf install -y nautilus file-roller libreoffice zathura zathura-pdf-mupdf gedit
 
 # Fonts & icons
 sudo dnf install -y google-noto-emoji-fonts
@@ -19,10 +19,15 @@ sudo dnf install -y vlc imv
 
 # System utilities
 sudo dnf install -y nwg-look gnome-themes-extra p7zip p7zip-plugins unrar \
-    unzip zip gvfs-smb samba-client tumbler gnome-keyring seahorse qalculate-gtk
+    unzip zip gvfs-smb samba-client tumbler gdk-pixbuf2-modules gnome-keyring seahorse qalculate-gtk
 
-log "Setting nemo as default file manager..."
-xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+log "Setting nautilus as default file manager..."
+xdg-mime default org.gnome.Nautilus.desktop inode/directory application/x-gnome-saved-search
+
+log "Configuring Nautilus thumbnails..."
+gsettings set org.gnome.nautilus.preferences show-image-thumbnails 'always'
+gsettings set org.gnome.nautilus.preferences thumbnail-limit 500
+log "Nautilus thumbnails configured (always, 500MB limit)"
 
 log "Setting VLC as default media player..."
 xdg-mime default vlc.desktop video/mp4 video/x-matroska video/avi video/mpeg \
