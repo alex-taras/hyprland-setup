@@ -19,7 +19,7 @@ sudo dnf install -y vlc imv
 
 # System utilities
 sudo dnf install -y nwg-look gnome-themes-extra p7zip p7zip-plugins unrar \
-    unzip zip gvfs-smb samba-client tumbler gdk-pixbuf2-modules gnome-keyring seahorse qalculate-gtk
+    unzip zip gvfs-smb samba-client tumbler gdk-pixbuf2-modules gnome-desktop-thumbnailer gnome-keyring seahorse qalculate-gtk
 
 log "Setting nautilus as default file manager..."
 xdg-mime default org.gnome.Nautilus.desktop inode/directory application/x-gnome-saved-search
