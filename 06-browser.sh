@@ -29,6 +29,8 @@ else
 fi
 
 # LibreWolf
+curl -fsSL https://repo.librewolf.net/librewolf.repo | pkexec tee /etc/yum.repos.d/librewolf.repo
+
 if rpm -q librewolf &>/dev/null; then
     log "LibreWolf already installed"
 else

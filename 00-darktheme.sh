@@ -43,19 +43,31 @@ else
     log "Gruvbox Kvantum theme already installed"
 fi
 
-# Install Gruvbox Icon Pack (if present in Downloads)
+# Install Gruvbox Icon Pack
 log "Installing Gruvbox Icon Pack..."
-if [ -d ~/Downloads/gruvbox/gruvbox-plus-icon-pack.6.3.0/Gruvbox-Plus-Dark ]; then
-    mkdir -p ~/.local/share/icons
-    if [ ! -d ~/.local/share/icons/Gruvbox-Plus-Dark ]; then
-        cp -r ~/Downloads/gruvbox/gruvbox-plus-icon-pack.6.3.0/Gruvbox-Plus-Dark ~/.local/share/icons/
-        log "Gruvbox icon pack installed"
-    else
-        log "Gruvbox icon pack already installed"
-    fi
+mkdir -p ~/.local/share/icons
+if [ ! -d ~/.local/share/icons/Gruvbox-Plus-Dark ]; then
+    cd /tmp
+    unzip -q "$SCRIPT_DIR/themes/gruvbox-plus-icon-pack-6.3.0.zip" -d /tmp/
+    cp -r /tmp/Gruvbox-Plus-Dark ~/.local/share/icons/
+    rm -rf /tmp/Gruvbox-Plus-Dark /tmp/Gruvbox-Plus-Light
+    log "Gruvbox icon pack installed"
 else
-    log "Gruvbox icon pack not found in ~/Downloads/gruvbox/, skipping..."
+    log "Gruvbox icon pack already installed"
 fi
+
+# Configure icon folder colors
+log "Configuring icon folder colors (gold)..."
+if [ ! -d ~/work/gruvbox-plus-icon-pack ]; then
+    mkdir -p ~/work
+    cd ~/work
+    git clone https://github.com/SylEleuth/gruvbox-plus-icon-pack.git
+    log "Gruvbox icon pack repo cloned"
+fi
+
+cd ~/work/gruvbox-plus-icon-pack/scripts
+./folders-color-chooser -c gold
+log "Icon folder colors set to gold"
 
 # Configure GTK 2.0
 log "Configuring GTK 2.0..."

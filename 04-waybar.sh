@@ -19,6 +19,29 @@ log "Deploying MPD config..."
 mkdir -p ~/.config/mpd
 cp -r ./dotfiles/mpd/* ~/.config/mpd/
 
+log "Creating MPD data directories..."
+mkdir -p ~/.mpd/playlists
+
+# Remove database if it's a directory (common mistake)
+if [ -d ~/.mpd/database ]; then
+    log "WARNING: database is a directory, removing it (MPD needs it to be a file)..."
+    rm -rf ~/.mpd/database
+fi
+log "MPD will create database file on first run"
+
+log "Configuring MPD to wait for network..."
+mkdir -p ~/.config/systemd/user/mpd.service.d
+cat > ~/.config/systemd/user/mpd.service.d/network-wait.conf <<'EOF'
+[Unit]
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Restart=on-failure
+RestartSec=5
+EOF
+log "MPD will wait for network and auto-restart on failure"
+
 log "Disabling system MPD service..."
 if systemctl is-enabled mpd &>/dev/null 2>&1; then
     log "Stopping and disabling system MPD (using user service instead)..."
@@ -29,10 +52,12 @@ else
 fi
 
 log "Enabling user MPD service..."
+systemctl --user daemon-reload
 if systemctl --user is-enabled mpd &>/dev/null; then
-    log "MPD service already enabled"
+    log "MPD service already enabled, restarting..."
+    systemctl --user restart mpd || log "MPD restart failed (will retry on network)"
 else
-    systemctl --user enable --now mpd
+    systemctl --user enable --now mpd || log "MPD start failed (will retry on network)"
 fi
 
 log "Installing mpdris2 for media key support..."

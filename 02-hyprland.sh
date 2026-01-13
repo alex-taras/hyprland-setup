@@ -44,7 +44,7 @@ if fc-list | grep -q "CaskaydiaMono Nerd Font"; then
     log "CaskaydiaMono Nerd Font already installed"
 else
     mkdir -p ~/.local/share/fonts
-    unzip -o ../fonts/CascadiaMono.zip -d ~/.local/share/fonts/
+    unzip -o ./fonts/CascadiaMono.zip -d ~/.local/share/fonts/
     fc-cache -f -v
     log "CaskaydiaMono Nerd Font installed"
 fi
@@ -57,7 +57,7 @@ log "Installing Hyprland tools..."
 if rpm -q wl-clipboard &>/dev/null && rpm -q cliphist &>/dev/null; then
     log "Clipboard tools already installed"
 else
-    sudo dnf install -y wl-clipboard cliphist
+    sudo dnf install -y wl-clipboard cliphist --skip-unavailable
 fi
 
 # Screenshot tools
@@ -93,6 +93,13 @@ if rpm -q xfce-polkit &>/dev/null; then
     log "xfce-polkit already installed"
 else
     sudo dnf install -y xfce-polkit
+fi
+
+# Hyprland GUI utilities
+if rpm -q hyprland-guiutils &>/dev/null; then
+    log "hyprland-guiutils already installed"
+else
+    sudo dnf install -y hyprland-guiutils
 fi
 
 log "Deploying Hyprland dotfiles..."

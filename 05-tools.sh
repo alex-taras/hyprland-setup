@@ -187,6 +187,13 @@ cp -r ./dotfiles/rmpc/* ~/.config/rmpc/
 log "Installing CLI tools..."
 sudo dnf install -y ripgrep fd-find bat fzf zoxide rsync glow --skip-unavailable
 
+log "Installing wf-recorder (Wayland screen recorder)..."
+if rpm -q wf-recorder &>/dev/null; then
+    log "wf-recorder already installed"
+else
+    sudo dnf install -y wf-recorder
+fi
+
 log "Disabling systemd power button handling..."
 if [ -f /etc/systemd/logind.conf ]; then
     if grep -q "^HandlePowerKey=ignore" /etc/systemd/logind.conf; then
