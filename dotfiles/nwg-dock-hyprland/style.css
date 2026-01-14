@@ -1,0 +1,41 @@
+window {
+	background: rgba(40, 40, 40, 0.85);
+	border-radius: 12px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: rgba(214, 93, 14, 0.5);
+}
+
+#box {
+	padding: 6px;
+}
+
+#active {
+	border-bottom: solid 2px;
+	border-color: rgba(214, 93, 14, 0.8);
+}
+
+button, image {
+	background: none;
+	border-style: none;
+	box-shadow: none;
+	color: #ebdbb2;
+}
+
+button {
+	padding: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+	color: #ebdbb2;
+	font-size: 11px;
+	border-radius: 8px;
+}
+
+button:hover {
+	background-color: rgba(214, 93, 14, 0.3);
+	border-radius: 8px;
+}
+
+button:focus {
+	box-shadow: none;
+}

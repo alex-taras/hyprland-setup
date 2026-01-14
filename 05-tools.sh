@@ -194,6 +194,13 @@ else
     sudo dnf install -y wf-recorder
 fi
 
+log "Installing superfile (TUI file manager)..."
+if command -v spf &>/dev/null; then
+    log "superfile already installed"
+else
+    bash -c "$(curl -sLo- https://superfile.dev/install.sh)"
+fi
+
 log "Disabling systemd power button handling..."
 if [ -f /etc/systemd/logind.conf ]; then
     if grep -q "^HandlePowerKey=ignore" /etc/systemd/logind.conf; then
