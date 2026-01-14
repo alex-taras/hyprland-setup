@@ -14,7 +14,6 @@
   "modules-center": ["hyprland/workspaces"],
 
   "modules-right": [
-      "group/tray-expander",
       "group/motherboard",
       "group/connectivity",
       "pulseaudio",
