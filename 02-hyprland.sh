@@ -102,6 +102,50 @@ else
     sudo dnf install -y hyprland-guiutils
 fi
 
+log "Installing nwg-dock-hyprland..."
+if rpm -q nwg-dock-hyprland &>/dev/null; then
+    log "nwg-dock-hyprland already installed"
+else
+    sudo dnf install -y nwg-dock-hyprland
+fi
+
+log "Deploying nwg-dock-hyprland config..."
+mkdir -p ~/.config/nwg-dock-hyprland
+cp -r ./dotfiles/nwg-dock-hyprland/* ~/.config/nwg-dock-hyprland/
+
+log "Installing nwg-bar from source..."
+if command -v nwg-bar &>/dev/null; then
+    log "nwg-bar already installed"
+else
+    log "Installing nwg-bar build dependencies..."
+    sudo dnf install -y gtk3-devel gtk-layer-shell-devel golang make
+
+    if [ ! -d ~/build/nwg-bar ]; then
+        mkdir -p ~/build
+        git clone https://github.com/nwg-piotr/nwg-bar.git ~/build/nwg-bar
+    fi
+
+    cd ~/build/nwg-bar
+    make get
+    make build
+    sudo make install
+    cd -
+    log "nwg-bar installed"
+fi
+
+log "Deploying nwg-bar config..."
+mkdir -p ~/.config/nwg-bar/icons
+cp -r ./dotfiles/nwg-bar/* ~/.config/nwg-bar/
+
+log "Deploying webapp shortcuts..."
+mkdir -p ~/.local/share/applications
+mkdir -p ~/.local/share/icons/hicolor/scalable/apps
+cp ./dotfiles/applications/chrome-*.desktop ~/.local/share/applications/
+cp ./dotfiles/applications/org.gnome.Nautilus.desktop ~/.local/share/applications/
+cp ./dotfiles/icons/chrome-*.svg ~/.local/share/icons/hicolor/scalable/apps/
+update-desktop-database ~/.local/share/applications/ 2>/dev/null || true
+gtk-update-icon-cache ~/.local/share/icons/hicolor/ 2>/dev/null || true
+
 log "Deploying Hyprland dotfiles..."
 mkdir -p ~/.config/hypr
 cp -r ./dotfiles/hypr/* ~/.config/hypr/

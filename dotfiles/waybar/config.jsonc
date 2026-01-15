@@ -226,7 +226,7 @@
   "custom/power": {
       "format": "",
       "exec": "echo ; echo 󰟡 power // blur",
-      "on-click": "kitty --class floating -e ~/bin/sys-menu.sh",
+      "on-click": "nwg-bar",
       "interval" : 86400, // once every day
       "tooltip": true,
   },

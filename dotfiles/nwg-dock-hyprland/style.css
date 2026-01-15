@@ -1,9 +1,9 @@
 window {
 	background: rgba(40, 40, 40, 0.85);
-	border-radius: 12px;
+	border-radius: 0px;
 	border-style: solid;
-	border-width: 1px;
-	border-color: rgba(214, 93, 14, 0.5);
+	border-width: 2px;
+	border-color: rgba(214, 93, 14, 0.0);
 }
 
 #box {

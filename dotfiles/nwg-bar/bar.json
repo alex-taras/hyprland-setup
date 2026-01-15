@@ -1,0 +1,28 @@
+[
+  {
+    "label": "Lock",
+    "exec": "hyprctl dispatch exec hyprlock",
+    "icon": "/home/alext/.config/nwg-bar/icons/lock.svg"
+  },
+  {
+    "label": "Update",
+    "exec": "kitty --detach --class floating-large -e /home/alext/bin/sys-update.sh",
+    "icon": "/home/alext/.config/nwg-bar/icons/update.svg"
+  },
+  {
+    "label": "Shutdown",
+    "exec": "systemctl -i poweroff",
+    "icon": "/home/alext/.config/nwg-bar/icons/shutdown.svg"
+  },
+  {
+    "label": "Reboot",
+    "exec": "systemctl reboot",
+    "icon": "/home/alext/.config/nwg-bar/icons/reboot.svg"
+  },
+  {
+    "label": "Logout",
+    "exec": "hyprctl dispatch exit 2>/dev/null || loginctl terminate-user \"$USER\"",
+    "icon": "/home/alext/.config/nwg-bar/icons/logout.svg"
+  }
+]
+
