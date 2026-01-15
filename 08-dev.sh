@@ -46,6 +46,27 @@ for mime in text/x-python text/x-shellscript text/x-csrc text/x-c++src text/x-ma
     xdg-mime default code.desktop "$mime" 2>/dev/null || true
 done
 
+log "Installing Zed editor..."
+if command -v zed &>/dev/null; then
+    log "Zed already installed"
+else
+    curl -f https://zed.dev/install.sh | sh
+fi
+
+log "Installing Claude Code CLI..."
+if command -v claude &>/dev/null; then
+    log "Claude Code already installed"
+else
+    curl -fsSL https://claude.ai/install.sh | bash
+fi
+
+log "Installing Qwen Code..."
+if command -v qwen &>/dev/null; then
+    log "Qwen Code already installed"
+else
+    sudo npm install -g @qwen-code/qwen-code@latest
+fi
+
 log "Installing PulseView (Logic Analyzer)..."
 if rpm -q pulseview &>/dev/null; then
     log "PulseView already installed"

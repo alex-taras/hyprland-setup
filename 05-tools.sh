@@ -201,6 +201,13 @@ else
     bash -c "$(curl -sLo- https://superfile.dev/install.sh)"
 fi
 
+log "Installing Nicotine+ (Soulseek client)..."
+if rpm -q nicotine &>/dev/null; then
+    log "Nicotine+ already installed"
+else
+    sudo dnf install -y nicotine
+fi
+
 log "Disabling systemd power button handling..."
 if [ -f /etc/systemd/logind.conf ]; then
     if grep -q "^HandlePowerKey=ignore" /etc/systemd/logind.conf; then
