@@ -209,16 +209,14 @@ else
 fi
 
 log "Disabling systemd power button handling..."
-if [ -f /etc/systemd/logind.conf ]; then
-    if grep -q "^HandlePowerKey=ignore" /etc/systemd/logind.conf; then
-        log "Power button already set to ignore"
-    else
-        sudo sed -i 's/#HandlePowerKey=.*/HandlePowerKey=ignore/' /etc/systemd/logind.conf
-        sudo sed -i 's/^HandlePowerKey=.*/HandlePowerKey=ignore/' /etc/systemd/logind.conf
-        log "Power button now handled by Hyprland"
-    fi
+sudo mkdir -p /etc/systemd/logind.conf.d
+if [ -f /etc/systemd/logind.conf.d/power-button.conf ]; then
+    log "Power button already configured"
 else
-    log "logind.conf not found, skipping power button config"
+    echo '[Login]
+HandlePowerKey=ignore' | sudo tee /etc/systemd/logind.conf.d/power-button.conf > /dev/null
+    sudo systemctl restart systemd-logind
+    log "Power button now handled by Hyprland"
 fi
 
 log "Tools installed!"
