@@ -43,7 +43,7 @@ xdg-mime default org.gnome.gedit.desktop text/plain text/x-log text/x-readme
 
 log "Deploying bin scripts..."
 mkdir -p ~/bin
-cp -r ../bin/* ~/bin/
+cp -r ./bin/* ~/bin/
 chmod +x ~/bin/*.sh
 
 log "Installing Spotify (Flatpak - system)..."
