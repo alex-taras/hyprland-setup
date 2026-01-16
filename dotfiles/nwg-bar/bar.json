@@ -6,7 +6,7 @@
   },
   {
     "label": "Update",
-    "exec": "kitty --detach --class floating-large -e /home/alext/bin/sys-update.sh",
+    "exec": "kitty --detach --class Update -e /home/alext/bin/sys-update.sh & sleep 0.5 && hyprctl dispatch focuswindow class:Update",
     "icon": "/home/alext/.config/nwg-bar/icons/update.svg"
   },
   {
