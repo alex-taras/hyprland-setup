@@ -39,15 +39,39 @@ else
     sudo dnf install -y waybar
 fi
 
-log "Installing CaskaydiaMono Nerd Font..."
+log "Installing Nerd Fonts..."
+mkdir -p ~/.local/share/fonts
+
+# CaskaydiaMono (Gruvbox theme)
 if fc-list | grep -q "CaskaydiaMono Nerd Font"; then
     log "CaskaydiaMono Nerd Font already installed"
 else
-    mkdir -p ~/.local/share/fonts
     unzip -o ./fonts/CascadiaMono.zip -d ~/.local/share/fonts/
-    fc-cache -f -v
     log "CaskaydiaMono Nerd Font installed"
 fi
+
+# JetBrainsMono (Nord theme)
+if fc-list | grep -q "JetBrainsMono Nerd Font"; then
+    log "JetBrainsMono Nerd Font already installed"
+else
+    sudo dnf install -y jetbrains-mono-fonts-all
+    log "JetBrainsMono Nerd Font installed"
+fi
+
+# FiraMono (Catppuccin theme)
+if fc-list | grep -q "FiraMono Nerd Font"; then
+    log "FiraMono Nerd Font already installed"
+else
+    if [ -f ./fonts/FiraMono.zip ]; then
+        unzip -o ./fonts/FiraMono.zip -d ~/.local/share/fonts/
+        log "FiraMono Nerd Font installed"
+    else
+        log "WARNING: FiraMono.zip not found in fonts/ - Catppuccin theme font missing"
+    fi
+fi
+
+fc-cache -f -v
+log "Font cache rebuilt"
 
 
 
