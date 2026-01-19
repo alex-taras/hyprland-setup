@@ -24,7 +24,7 @@ The theme system uses:
 
 ### Catppuccin Mocha
 - **Accent**: Mauve/purple (#cba6f7)
-- **Font**: FiraCode Nerd Font
+- **Font**: FiraMono Nerd Font
 - **Style**: Pastel colors with soft contrast
 
 ## Quick Start

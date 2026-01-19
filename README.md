@@ -60,7 +60,7 @@ bash 10-theming.sh       # Theme manager setup (optional)
 Switch between multiple themes with a single command:
 - **Gruvbox** (default) - Warm orange accent, CaskaydiaMono Nerd Font
 - **Nord** - Cool cyan accent, JetBrainsMono Nerd Font
-- **Catppuccin Mocha** - Purple/mauve accent, FiraCode Nerd Font
+- **Catppuccin Mocha** - Purple/mauve accent, FiraMono Nerd Font
 
 **Quick switch**: `~/bin/theme-switcher.sh`
 
@@ -78,7 +78,7 @@ See [THEMING.md](THEMING.md) for details on creating custom themes.
 Each theme includes its own font configuration:
 - **Gruvbox** - CaskaydiaMono Nerd Font (default)
 - **Nord** - JetBrainsMono Nerd Font
-- **Catppuccin** - FiraCode Nerd Font
+- **Catppuccin** - FiraMono Nerd Font
 
 Fonts applied to: Waybar, Kitty, Starship, Hyprlock, GTK, Qt apps
 
