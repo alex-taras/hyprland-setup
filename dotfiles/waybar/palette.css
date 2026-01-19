@@ -1,4 +1,6 @@
-/* Gruvbox Color Palette */
+/* Waybar Theme Palette - Auto-generated */
+/* To change theme, run: ~/bin/theme-switcher.sh */
+/* Do not edit manually - use: generate-waybar-theme.sh <theme-name> */
 
 /* Dark colors */
 @define-color dark-gray #282828;
@@ -34,3 +36,9 @@
 
 /* Special */
 @define-color white #fbf1c7;
+
+/* Semantic tokens */
+@define-color accent #d65d0e;
+@define-color accent-light #fe8019;
+@define-color active #d65d0e;
+@define-color inactive #665c54;
