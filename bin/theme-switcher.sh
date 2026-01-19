@@ -56,9 +56,13 @@ apply_theme() {
     # Update GTK/Qt fonts
     "$SCRIPT_DIR/generate-gtk-qt-fonts.sh" "$theme"
 
+    # Generate hyprland theme
+    "$SCRIPT_DIR/generate-hyprland-theme.sh" "$theme"
+
     # Reload applications
     pkill -SIGUSR2 waybar 2>/dev/null || true
     pkill -USR1 kitty 2>/dev/null || true
+    hyprctl reload 2>/dev/null || true
 
     # Save current theme
     echo "$theme" > "$CURRENT_THEME_FILE"
