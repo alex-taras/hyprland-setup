@@ -9,10 +9,11 @@ Automated setup scripts for a complete Fedora/Nobara desktop environment with Hy
 This repository contains modular installation scripts that set up a complete Fedora/Nobara system with:
 
 - **Hyprland** - Modern Wayland compositor with Gruvbox theme
+- **Theme Manager** - Switch colors and fonts across all apps (Gruvbox, Nord, Catppuccin)
 - **Dark theme** - System-wide dark theme for GTK, Qt, and KDE apps
 - **Custom tools** - MPD, Waybar, Rofi, and more
 - **Development tools** - VSCode, PulseView, multiple languages
-- **Dotfiles deployment** - Automated configuration with CaskaydiaMono Nerd Font
+- **Dotfiles deployment** - Automated configuration with Nerd Fonts
 
 ## Quick Start
 
@@ -33,6 +34,7 @@ bash 06-browser.sh       # Chromium + LibreWolf
 bash 07-apps.sh          # Desktop apps + Spotify
 bash 08-dev.sh           # Development tools
 bash 09-gaming.sh        # DOSBox Staging
+bash 10-theming.sh       # Theme manager setup (optional)
 ```
 
 ## Installation Scripts
@@ -50,20 +52,35 @@ bash 09-gaming.sh        # DOSBox Staging
 | `07-apps.sh` | Desktop applications | nemo, libreoffice, vlc, imv, spotify (flatpak) |
 | `08-dev.sh` | Development tools | VSCode, python, ruby, nodejs, pulseview |
 | `09-gaming.sh` | Retro gaming | dosbox-staging |
+| `10-theming.sh` | Theme manager | Theme switcher, generators for waybar/kitty/hyprland/starship |
 
 ## Key Features
 
-### Gruvbox Theme
-- **Hyprland** - Orange (#d65d0e) and yellow (#d79921) borders
-- **Waybar** - Gruvbox color scheme with orange accents
-- **Rofi** - Custom rounded Gruvbox dark theme
-- **Hyprlock** - Orange border, dark background, time + date display
-- **System-wide** - GTK, Qt (Kvantum), and KDE apps (BreezeDark)
+### Theme Manager
+Switch between multiple themes with a single command:
+- **Gruvbox** (default) - Warm orange accent, CaskaydiaMono Nerd Font
+- **Nord** - Cool cyan accent, JetBrainsMono Nerd Font
+- **Catppuccin Mocha** - Purple/mauve accent, FiraCode Nerd Font
+
+**Quick switch**: `~/bin/theme-switcher.sh`
+
+Themes colors and fonts across:
+- **Hyprland** - Window borders, shadows, gaps
+- **Waybar** - Status bar colors and fonts
+- **Kitty** - Terminal colors and fonts
+- **Starship** - Shell prompt colors
+- **Hyprlock** - Lock screen colors
+- **GTK/Qt** - System fonts for all applications
+
+See [THEMING.md](THEMING.md) for details on creating custom themes.
 
 ### Font Configuration
-- **CaskaydiaMono Nerd Font** - Unified across all applications
-  - Installed from local zip file to `~/.local/share/fonts`
-  - Used in: Waybar, Kitty, Rofi, Starship, Hyprlock, VSCode
+Each theme includes its own font configuration:
+- **Gruvbox** - CaskaydiaMono Nerd Font (default)
+- **Nord** - JetBrainsMono Nerd Font
+- **Catppuccin** - FiraCode Nerd Font
+
+Fonts applied to: Waybar, Kitty, Starship, Hyprlock, GTK, Qt apps
 
 ### Hyprland Ecosystem
 - **start-hyprland** - Watchdog wrapper with crash recovery and safe mode
@@ -99,6 +116,12 @@ Deployed to `~/bin/`:
 
 | Script | Description |
 |--------|-------------|
+| `theme-switcher.sh` | Interactive theme switcher menu |
+| `generate-waybar-theme.sh` | Generate waybar theme from definition |
+| `generate-kitty-theme.sh` | Generate kitty theme from definition |
+| `generate-hyprland-theme.sh` | Generate hyprland theme from definition |
+| `generate-starship-theme.sh` | Generate starship theme from definition |
+| `generate-gtk-qt-fonts.sh` | Update GTK/Qt fonts from theme |
 | `sys-menu.sh` | System menu (lock, shutdown, reboot, logout) |
 | `hypr-random-wallpaper.sh` | Random wallpaper selector |
 | `hypr-launch-app.sh` | App launcher with focus management |
@@ -121,10 +144,12 @@ hyprland-setup/
 ├── 07-apps.sh
 ├── 08-dev.sh
 ├── 09-gaming.sh
-├── bin/                # Custom scripts
-├── dotfiles/           # Configuration files
+├── 10-theming.sh
+├── bin/                # Custom scripts and theme generators
+├── themes/             # Theme definitions (gruvbox, nord, catppuccin-mocha)
+├── dotfiles/           # Configuration files and templates
 │   ├── greetd/        # Greeter configs (sysc-greet)
-│   ├── hypr/          # Hyprland configs (Gruvbox theme)
+│   ├── hypr/          # Hyprland configs and templates
 │   ├── kitty/         # Terminal config
 │   ├── waybar/        # Status bar config (Gruvbox)
 │   ├── rofi/          # Launcher theme (Gruvbox)
@@ -145,6 +170,7 @@ hyprland-setup/
 - `Super + P` - Screenshot (full screen)
 - `Super + Shift + P` - Screenshot (region)
 - `Super + Shift + Q` - System menu
+- `Super + Shift + T` - Theme switcher (add manually to keybinds.conf)
 
 ### Environment Variables
 - `XDG_DATA_DIRS` - Includes flatpak paths for Rofi
@@ -187,10 +213,11 @@ hyprland-setup/
 
 1. **Reboot** to load all services and environment variables
 2. **Test greeter** - sysc-greet should appear on reboot
-3. **Configure Rofi** - Run `rofi-theme-selector` to preview themes
-4. **Set wallpaper** - Use `~/bin/hypr-random-wallpaper.sh`
-5. **Test lock** - `Super + L` to test hyprlock
-6. **Add music** - Configure MPD music directory in `~/.mpd/mpd.conf`
+3. **Try theme switcher** - Run `~/bin/theme-switcher.sh` to switch between Gruvbox, Nord, and Catppuccin
+4. **Configure Rofi** - Run `rofi-theme-selector` to preview themes
+5. **Set wallpaper** - Use `~/bin/hypr-random-wallpaper.sh`
+6. **Test lock** - `Super + L` to test hyprlock
+7. **Add music** - Configure MPD music directory in `~/.mpd/mpd.conf`
 
 ## Requirements
 

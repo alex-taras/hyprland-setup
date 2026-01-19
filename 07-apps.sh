@@ -46,6 +46,11 @@ mkdir -p ~/bin
 cp -r ./bin/* ~/bin/
 chmod +x ~/bin/*.sh
 
+log "Deploying themes..."
+mkdir -p ~/themes
+cp -r ./themes/*.conf ~/themes/
+log "Themes deployed to ~/themes/"
+
 log "Installing Spotify (Flatpak - system)..."
 if flatpak list --system | grep -q com.spotify.Client; then
     log "Spotify already installed"
