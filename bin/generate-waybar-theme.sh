@@ -8,7 +8,10 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 THEME_DIR="$(dirname "$SCRIPT_DIR")/themes"
 THEME_FILE="$THEME_DIR/$THEME.conf"
 WAYBAR_DIR="$HOME/.config/waybar"
+WAYBAR_DOTFILES="$(dirname "$SCRIPT_DIR")/dotfiles/waybar"
 OUTPUT_FILE="$WAYBAR_DIR/palette.css"
+STYLE_TEMPLATE="$WAYBAR_DOTFILES/style.css.template"
+STYLE_OUTPUT="$WAYBAR_DIR/style.css"
 
 if [ ! -f "$THEME_FILE" ]; then
     echo "Error: Theme file not found: $THEME_FILE"
@@ -83,5 +86,19 @@ cat > "$OUTPUT_FILE" << EOF
 @define-color light-aqua $aqua_light;
 @define-color light-orange $accent_light;
 EOF
+
+# Generate style.css from template
+if [ -f "$STYLE_TEMPLATE" ]; then
+    sed -e "s|{{FONT_FAMILY}}|$font_family|g" \
+        -e "s|{{FONT_FAMILY_MONO}}|$font_family_mono|g" \
+        -e "s|{{FONT_SIZE}}|$font_size|g" \
+        -e "s|{{FONT_SIZE_SMALL}}|$font_size_small|g" \
+        -e "s|{{FONT_SIZE_MEDIUM}}|$font_size_medium|g" \
+        -e "s|{{FONT_SIZE_LARGE}}|$font_size_large|g" \
+        -e "s|{{FONT_SIZE_XLARGE}}|$font_size_xlarge|g" \
+        -e "s|{{FONT_SIZE_XXLARGE}}|$font_size_xxlarge|g" \
+        "$STYLE_TEMPLATE" > "$STYLE_OUTPUT"
+    echo "Generated waybar style: $STYLE_OUTPUT (theme: $THEME)"
+fi
 
 echo "Generated waybar theme: $OUTPUT_FILE (theme: $THEME)"

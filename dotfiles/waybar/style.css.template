@@ -1,0 +1,258 @@
+@import "palette.css";
+
+* {
+background-color: transparent;
+color: @light-orange;
+border: none;
+border-radius: 0;
+min-height: 0;
+font-family: '{{FONT_FAMILY}}';
+font-size: {{FONT_SIZE_LARGE}}px;
+padding: 0 6px;
+}
+
+/* Main window - continuous bar */
+window#waybar {
+  background-color: rgba(29, 32, 33, 0.85);
+  border: none;
+  border-radius: 0;
+  margin: 8px 10px 0px 10px;  /* top right bottom left - matches hypr gaps_out */
+  padding: 4px 0px;  /* vertical padding for content centering */
+}
+
+/* Left modules container - no individual styling */
+.modules-left {
+  padding: 0 12px;
+}
+
+/* Center modules container - no individual styling */
+.modules-center {
+  padding: 0 12px;
+}
+
+/* Right modules container - no individual styling */
+.modules-right {
+  padding: 0 12px;
+}
+
+/* MPD widget - Gruvbox light blue */
+#mpd {
+  font-family: '{{FONT_FAMILY_MONO}}';
+  color: @light-blue;
+}
+
+/* Weather widget - Gruvbox light yellow */
+#custom-weather {
+  color: @light-yellow;
+}
+
+/* Clock widget - Gruvbox light yellow */
+#clock {
+  color: @light-yellow;
+}
+
+/* Workspaces - Gruvbox purple theme */
+#workspaces {
+  font-family: '{{FONT_FAMILY}}';
+  font-size: {{FONT_SIZE_LARGE}}px;
+}
+
+#workspaces button {
+  padding-left: 6px;
+  padding-right: 6px;
+  margin: 0 1.5px;
+  min-width: 9px;
+  font-family: '{{FONT_FAMILY}}';
+  font-size: {{FONT_SIZE_LARGE}}px;
+  color: @dark-purple;  /* Gruvbox purple */
+  background: transparent;
+  border: none;
+}
+
+#workspaces button * {
+  color: @dark-purple;  /* Gruvbox purple */
+}
+
+#workspaces button label {
+  color: @dark-purple;  /* Gruvbox purple */
+}
+
+#workspaces button.active {
+  color: @light-purple;  /* Gruvbox light purple */
+}
+
+#workspaces button.active * {
+  color: @light-purple;  /* Gruvbox light purple */
+}
+
+#workspaces button.active label {
+  color: @light-purple;  /* Gruvbox light purple */
+}
+
+#workspaces button.empty {
+  opacity: 0.5;
+  color: @dark-purple;  /* Gruvbox purple */
+}
+
+#workspaces button.empty * {
+  color: @dark-purple;  /* Gruvbox purple */
+}
+
+#workspaces button.empty label {
+  color: @dark-purple;  /* Gruvbox purple */
+}
+
+#motherboard,
+#connectivity {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+#cpu {
+  color: @light-red;  /* Gruvbox light red */
+}
+
+#memory {
+  color: @light-green;  /* Gruvbox light olive green */
+}
+
+#temperature {
+  color: @light-yellow;  /* Gruvbox light yellow */
+}
+
+#disk {
+  color: @light-blue;  /* Gruvbox light blue */
+}
+
+#tray {
+  margin-right: 16px;
+  padding: 8px;
+}
+
+/* Module colors */
+#network,
+#custom-network {
+  color: @white;  /* Gruvbox white */
+}
+
+#bluetooth {
+  color: @light-blue;  /* Gruvbox light blue */
+}
+
+#pulseaudio {
+  color: @light-green;  /* Gruvbox light green */
+}
+
+#custom-power {
+  color: @light-red;  /* Gruvbox light red */
+}
+
+#custom-launcher {
+  color: @white;  /* Gruvbox white */
+}
+
+/* Tray context menu styling (Gruvbox colors) */
+#tray menu,
+#tray menu box,
+#tray menu window,
+#tray menu decoration {
+  background: @bg1;
+  border: none;
+  padding: 4px;
+  box-shadow: none;
+  outline: none;
+}
+
+#tray menu *,
+#tray menu box *,
+#tray menu window * {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+#tray menuitem {
+  font-family: "{{FONT_FAMILY}}";
+  font-size: {{FONT_SIZE_MEDIUM}}px;
+  color: @white;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+#tray menuitem *,
+#tray menuitem label {
+  font-family: "{{FONT_FAMILY}}";
+  font-size: {{FONT_SIZE_MEDIUM}}px;
+  color: @white;
+  background: transparent;
+  border: none;
+}
+
+#tray menuitem:hover {
+  background-color: @dark-orange;
+  color: @white;
+  border-radius: 10px;
+}
+
+#tray menuitem:hover *,
+#tray menuitem:hover label {
+  font-family: "{{FONT_FAMILY}}";
+  font-size: {{FONT_SIZE_MEDIUM}}px;
+  background-color: transparent;
+  color: @white;
+}
+
+#tray menuitem:selected {
+  background-color: @dark-orange;
+  color: @white;
+  border-radius: 10px;
+}
+
+#tray menuitem:selected *,
+#tray menuitem:selected label {
+  font-family: "{{FONT_FAMILY}}";
+  font-size: {{FONT_SIZE_MEDIUM}}px;
+  background-color: transparent;
+  color: @white;
+}
+
+#custom-stock.up {
+  color: #a6e3a1;
+}
+
+#custom-stock.down {
+  color: #f38ba8;
+}
+
+#custom-stock.neutral {
+  color: #cdd6f4;
+}
+
+#info-group {
+  background-color: rgba(30, 30, 46, 0.8);
+  border-radius: 5px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+tooltip {
+  background-color: rgba(30, 30, 46, 1.0);
+  border: 2px solid rgba(205, 214, 244, 0.5);
+  border-radius: 5px;
+  padding: 8px;
+  color: @white;  /* Gruvbox white */
+}
+
+tooltip * {
+  color: @white;  /* Gruvbox white */
+}
+
+tooltip label {
+  color: @white;  /* Gruvbox white */
+}
+
+.hidden {
+  opacity: 0;
+}

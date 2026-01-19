@@ -47,13 +47,24 @@ apply_theme() {
     # Generate waybar theme
     "$SCRIPT_DIR/generate-waybar-theme.sh" "$theme"
 
-    # Reload waybar (it auto-reloads on CSS change)
+    # Generate kitty theme
+    "$SCRIPT_DIR/generate-kitty-theme.sh" "$theme"
+
+    # Generate starship theme
+    "$SCRIPT_DIR/generate-starship-theme.sh" "$theme"
+
+    # Update GTK/Qt fonts
+    "$SCRIPT_DIR/generate-gtk-qt-fonts.sh" "$theme"
+
+    # Reload applications
     pkill -SIGUSR2 waybar 2>/dev/null || true
+    pkill -USR1 kitty 2>/dev/null || true
 
     # Save current theme
     echo "$theme" > "$CURRENT_THEME_FILE"
 
     echo "Theme applied: $theme"
+    echo "Restart terminal and other apps to see full changes"
 }
 
 # Show theme menu with gum
